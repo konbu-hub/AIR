@@ -1,21 +1,8 @@
-import React, { useState } from 'react';
-import { Play, Square, Music, Feather } from 'lucide-react';
-import { playNatsukage, stopNatsukage, isNatsukagePlaying } from '../utils/audioSynth';
+import React from 'react';
+import { Feather, Sun, Sparkles } from 'lucide-react';
 import WeatherWidget from './WeatherWidget';
 
 export default function Header() {
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const handleToggleNatsukage = () => {
-    if (isPlaying) {
-      stopNatsukage();
-      setIsPlaying(false);
-    } else {
-      playNatsukage();
-      setIsPlaying(true);
-    }
-  };
-
   return (
     <header className="animate-fade-in">
       {/* 2000年代ファンサイト風トップバー */}
@@ -71,29 +58,19 @@ export default function Header() {
         </div>
       </div>
 
-      {/* 『夏影 -Natsukage-』専用 BGM プレイヤー */}
-      <div className="retro-box retro-box-gold" style={{ padding: '16px', marginBottom: '16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <Music color="#fbbf24" size={24} className="glow-text" />
-            <div>
-              <div className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.1rem', fontWeight: 'bold' }}>
-                観鈴のテーマ 『夏影 -Natsukage-』 (BGM Player)
-              </div>
-              <div style={{ fontSize: '0.85rem', color: '#cbd5e1', marginTop: '2px' }}>
-                {isPlaying ? '♪ 演奏中: 正確なピッチとエンベロープで奏でられる『夏影』の旋律' : 'クリックすると『夏影』の旋律が流れます'}
-              </div>
+      {/* 『夏影』世界観モジュール (BGM再生機能は削除し、夏影の情景美を全面押し) */}
+      <div className="retro-box retro-box-gold" style={{ padding: '16px', marginBottom: '16px', background: 'linear-gradient(135deg, rgba(12, 38, 71, 0.9) 0%, rgba(3, 16, 36, 0.95) 100%)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          <Sun color="#fbbf24" size={28} className="glow-text" />
+          <div>
+            <div className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.2rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              観鈴のテーマ 『夏影 -Natsukage-』 〜 永遠とノスタルジーが宿る夏の影 〜
+            </div>
+            <div style={{ fontSize: '0.88rem', color: '#cbd5e1', marginTop: '4px', lineHeight: '1.6' }}>
+              アスファルトの向こうで揺れる陽炎、冷えた缶ジュース、17時過ぎのヒグラシの声、そして茜色に染まる煙樹ヶ浜。
+              あの旋律が心の中で鳴り響くとき、私たちはいつでも観鈴と往人のいた「あの夏」に立ち返ることができる。
             </div>
           </div>
-
-          <button
-            onClick={handleToggleNatsukage}
-            className={`retro-btn ${isPlaying ? 'retro-btn-active' : ''}`}
-            style={{ padding: '10px 20px', fontSize: '1rem' }}
-          >
-            {isPlaying ? <Square size={16} /> : <Play size={16} />}
-            {isPlaying ? '夏影を停止する' : '『夏影』を再生'}
-          </button>
         </div>
       </div>
 
@@ -103,7 +80,7 @@ export default function Header() {
       {/* スクロールニューステロップ */}
       <div style={{ background: '#000', border: '1px solid #38bdf8', padding: '6px 12px', margin: '16px 0', overflow: 'hidden', whiteSpace: 'nowrap', borderRadius: '4px' }}>
         <div style={{ display: 'inline-block', animation: 'marquee 25s linear infinite', color: '#fbbf24', fontFamily: 'var(--font-dot)', fontSize: '0.9rem' }}>
-          【NEWS】観鈴のテーマ『夏影 -Natsukage-』専用メロディプレイヤーチューニング完了！ ◆ 煙樹ヶ浜の夕焼けと波音、ヒグラシの声とともに聴く奇跡の旋律 ◆
+          【NEWS】西御坊発 聖地回収ルート ＆ 現場実写対比データ実装完了！ ◆ 『夏影』の情景が宿る和歌山県美浜町・煙樹ヶ浜・西川線路橋へ ◆ 舞い散る羽とともにあの夏へ ◆
         </div>
       </div>
 
