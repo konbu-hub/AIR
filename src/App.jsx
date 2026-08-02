@@ -5,11 +5,11 @@ import PlanSelector from './components/PlanSelector';
 import NatsukageSpecialSection from './components/NatsukageSpecialSection';
 import SceneViewer from './components/SceneViewer';
 import SpotMapList from './components/SpotMapList';
-import BBSCommentSection from './components/BBSCommentSection';
-import { Calendar, Sparkles, Camera, Map, MessageSquare, Feather, Navigation } from 'lucide-react';
+import OtakuPassionEssay from './components/OtakuPassionEssay';
+import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Feather } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('route'); // デフォルトを「厳密聖地回収ルート」に設定！
+  const [activeTab, setActiveTab] = useState('route');
 
   const [feathers, setFeathers] = useState([]);
 
@@ -65,6 +65,14 @@ export default function App() {
           </button>
 
           <button
+            onClick={() => setActiveTab('essay')}
+            className={`retro-btn ${activeTab === 'essay' ? 'retro-btn-active' : ''}`}
+            style={{ padding: '12px 20px', fontSize: '1rem', background: activeTab === 'essay' ? 'linear-gradient(180deg, #c2410c 0%, #9a3412 100%)' : 'linear-gradient(180deg, #7c2d12 0%, #451a03 100%)', borderColor: '#fbbf24' }}
+          >
+            <Flame size={18} color="#fbbf24" /> 【魂の手記】 当時オタクの熱狂AIR長文考察
+          </button>
+
+          <button
             onClick={() => setActiveTab('plan')}
             className={`retro-btn ${activeTab === 'plan' ? 'retro-btn-active' : ''}`}
             style={{ padding: '12px 20px', fontSize: '1rem' }}
@@ -77,7 +85,7 @@ export default function App() {
             className={`retro-btn ${activeTab === 'scene' ? 'retro-btn-active' : ''}`}
             style={{ padding: '12px 20px', fontSize: '1rem' }}
           >
-            <Camera size={18} /> 【比較】 アニメカット vs 現場写真一覧
+            <Camera size={18} /> 【比較】 アニメ名シーン再絵画一覧
           </button>
 
           <button
@@ -87,24 +95,16 @@ export default function App() {
           >
             <Map size={18} /> Google Maps ナビ
           </button>
-
-          <button
-            onClick={() => setActiveTab('bbs')}
-            className={`retro-btn ${activeTab === 'bbs' ? 'retro-btn-active' : ''}`}
-            style={{ padding: '12px 20px', fontSize: '1rem' }}
-          >
-            <MessageSquare size={18} /> 巡礼ノート BBS
-          </button>
         </div>
 
         {/* メインコンテンツ表示エリア */}
         <main>
           {activeTab === 'route' && <PilgrimageRouteGuide />}
           {activeTab === 'natsukage' && <NatsukageSpecialSection />}
+          {activeTab === 'essay' && <OtakuPassionEssay />}
           {activeTab === 'plan' && <PlanSelector />}
           {activeTab === 'scene' && <SceneViewer />}
           {activeTab === 'map' && <SpotMapList />}
-          {activeTab === 'bbs' && <BBSCommentSection />}
         </main>
 
         {/* レトロファンサイトフッター */}

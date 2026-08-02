@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Camera, Eye, MapPin, Feather, X, BookOpen, Volume2 } from 'lucide-react';
+import { Camera, MapPin, X, BookOpen, Volume2, Heart, Sparkles } from 'lucide-react';
 import { PILGRIMAGE_SPOTS } from '../data/pilgrimageData';
 
 export default function SceneViewer() {
@@ -14,12 +14,12 @@ export default function SceneViewer() {
     <div className="retro-box animate-fade-in">
       <div className="retro-title-bar retro-title-bar-orange">
         <Camera size={20} />
-        <span>【STEP 2】 アニメカット ＆ 現場シーン マッピング ＋ 長文考察データベース</span>
+        <span>【厳密アニメ名シーン再絵画】 カット対比 ＆ 「わかる！！！」考察データベース</span>
       </div>
 
       <p style={{ fontSize: '0.9rem', color: '#cbd5e1', marginBottom: '16px' }}>
-        アニメ版（京都アニメーション制作）および原作PCゲーム『AIR』の作中シーンと、和歌山県美浜町・由良町・兵庫余部等の現場写真を完全マッピング。
-        クリックすると「どういう感情で観鈴と往人がこの場所にいたのか」を深掘りした熱量長文解説を閲覧できます。
+        作中アニメの画角・小道具（どろり濃いジュース、カラスのそら、西川の線路橋、夕焼けの防波堤等）を精密に再絵画したイラストと、現場写真を比較。
+        オタクが「うわぁあ！このカットだ！」と直感的に理解できる名シーンデータベースです。
       </p>
 
       {/* エリアフィルター */}
@@ -28,25 +28,19 @@ export default function SceneViewer() {
           onClick={() => setFilterArea('ALL')}
           className={`retro-btn ${filterArea === 'ALL' ? 'retro-btn-active' : ''}`}
         >
-          全エリア表示 ({PILGRIMAGE_SPOTS.length})
+          全主要カット ({PILGRIMAGE_SPOTS.length})
         </button>
         <button 
-          onClick={() => setFilterArea('美浜')}
-          className={`retro-btn ${filterArea === '美浜' ? 'retro-btn-active' : ''}`}
+          onClick={() => setFilterArea('御坊')}
+          className={`retro-btn ${filterArea === '御坊' ? 'retro-btn-active' : ''}`}
         >
-          和歌山・美浜エリア
+          和歌山・御坊〜美浜ルート
         </button>
         <button 
           onClick={() => setFilterArea('由良')}
           className={`retro-btn ${filterArea === '由良' ? 'retro-btn-active' : ''}`}
         >
           和歌山・由良エリア
-        </button>
-        <button 
-          onClick={() => setFilterArea('兵庫')}
-          className={`retro-btn ${filterArea === '兵庫' ? 'retro-btn-active' : ''}`}
-        >
-          兵庫・但馬エリア
         </button>
       </div>
 
@@ -67,15 +61,15 @@ export default function SceneViewer() {
             className="spot-card"
           >
             {/* 比較画像プレビュー */}
-            <div style={{ position: 'relative', height: '200px', display: 'flex' }}>
+            <div style={{ position: 'relative', height: '210px', display: 'flex' }}>
               <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
                 <img 
                   src={spot.animeCompareImg} 
-                  alt="アニメ/原作カットイメージ" 
+                  alt="アニメ名シーン再絵画" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
-                <span style={{ position: 'absolute', bottom: '6px', left: '6px', background: 'rgba(0,0,0,0.75)', color: '#fbbf24', fontSize: '0.75rem', padding: '2px 6px', fontFamily: 'var(--font-dot)' }}>
-                  【作中シーン】
+                <span style={{ position: 'absolute', bottom: '6px', left: '6px', background: 'rgba(0,0,0,0.85)', color: '#fbbf24', fontSize: '0.75rem', padding: '2px 6px', fontFamily: 'var(--font-dot)', border: '1px solid #fbbf24' }}>
+                  【名シーン再絵画】
                 </span>
               </div>
               <div style={{ width: '2px', background: '#fbbf24', zIndex: 2 }}></div>
@@ -85,32 +79,35 @@ export default function SceneViewer() {
                   alt="現場リアル写真" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
-                <span style={{ position: 'absolute', bottom: '6px', right: '6px', background: 'rgba(0,0,0,0.75)', color: '#38bdf8', fontSize: '0.75rem', padding: '2px 6px', fontFamily: 'var(--font-dot)' }}>
+                <span style={{ position: 'absolute', bottom: '6px', right: '6px', background: 'rgba(0,0,0,0.85)', color: '#38bdf8', fontSize: '0.75rem', padding: '2px 6px', fontFamily: 'var(--font-dot)', border: '1px solid #38bdf8' }}>
                   【現場ロケーション】
                 </span>
               </div>
             </div>
 
             {/* スポット基本情報 */}
-            <div style={{ padding: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                <MapPin size={16} color="#fbbf24" />
-                <span className="font-dot" style={{ color: '#fbbf24', fontSize: '0.8rem' }}>{spot.location}</span>
-              </div>
-              <h3 className="font-mincho" style={{ color: '#7dd3fc', fontSize: '1.2rem', marginBottom: '6px' }}>
-                {spot.name}
-              </h3>
-              <p style={{ fontSize: '0.8rem', color: '#cbd5e1', marginBottom: '10px' }}>
-                {spot.sceneName}
-              </p>
-              
-              <div style={{ background: 'rgba(19, 57, 102, 0.6)', padding: '6px 10px', borderLeft: '3px solid #f97316', fontSize: '0.8rem', color: '#f8fafc', fontStyle: 'italic' }}>
-                {spot.famousQuote}
+            <div style={{ padding: '14px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <MapPin size={16} color="#fbbf24" />
+                  <span className="font-dot" style={{ color: '#fbbf24', fontSize: '0.82rem' }}>{spot.location}</span>
+                </div>
+                <span className="font-dot" style={{ color: '#ea580c', fontSize: '0.78rem', background: 'rgba(234,88,12,0.2)', padding: '1px 6px', border: '1px solid #ea580c' }}>
+                  {spot.episodeTime}
+                </span>
               </div>
 
-              <div style={{ marginTop: '10px', textAlign: 'right' }}>
-                <span className="retro-btn" style={{ padding: '4px 8px', fontSize: '0.8rem' }}>
-                  <BookOpen size={14} /> 深い長文考察を読む
+              <h3 className="font-mincho" style={{ color: '#7dd3fc', fontSize: '1.25rem', marginBottom: '6px' }}>
+                {spot.name}
+              </h3>
+              
+              <div style={{ background: 'rgba(251, 191, 36, 0.12)', padding: '6px 10px', borderLeft: '3px solid #fbbf24', fontSize: '0.82rem', color: '#fffdf8', marginBottom: '10px' }}>
+                <strong>オタクの感情:</strong> {spot.otakuCaption}
+              </div>
+
+              <div style={{ textAlign: 'right' }}>
+                <span className="retro-btn" style={{ padding: '4px 10px', fontSize: '0.8rem' }}>
+                  <BookOpen size={14} /> 「わかる！！！」詳細検証を読む
                 </span>
               </div>
             </div>
@@ -131,7 +128,7 @@ export default function SceneViewer() {
 
             <div style={{ borderBottom: '2px solid #fbbf24', paddingBottom: '12px', marginBottom: '16px' }}>
               <span className="font-dot" style={{ color: '#38bdf8', fontSize: '0.9rem' }}>
-                【{selectedSpot.area}】 {selectedSpot.location}
+                【{selectedSpot.area}】 {selectedSpot.location} ({selectedSpot.episodeTime})
               </span>
               <h2 className="font-mincho glow-text" style={{ color: '#fbbf24', fontSize: '1.8rem', marginTop: '4px' }}>
                 {selectedSpot.name}
@@ -141,33 +138,33 @@ export default function SceneViewer() {
             {/* 比較画像拡大 */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' }}>
               <div>
-                <img src={selectedSpot.animeCompareImg} alt="作中カット" style={{ width: '100%', height: '220px', objectFit: 'cover', border: '1px solid #fbbf24' }} />
-                <div className="font-dot" style={{ textAlign: 'center', color: '#fbbf24', fontSize: '0.85rem', marginTop: '4px' }}>
-                  ▲ 作中カットイメージ ({selectedSpot.sceneName})
+                <img src={selectedSpot.animeCompareImg} alt="名シーン再絵画" style={{ width: '100%', height: '240px', objectFit: 'cover', border: '2px solid #fbbf24' }} />
+                <div className="font-dot" style={{ textAlign: 'center', color: '#fbbf24', fontSize: '0.85rem', marginTop: '6px' }}>
+                  ▲ 厳密アニメ名シーン再絵画 ({selectedSpot.episodeTime})
                 </div>
               </div>
               <div>
-                <img src={selectedSpot.imageUrl} alt="現場写真" style={{ width: '100%', height: '220px', objectFit: 'cover', border: '1px solid #38bdf8' }} />
-                <div className="font-dot" style={{ textAlign: 'center', color: '#38bdf8', fontSize: '0.85rem', marginTop: '4px' }}>
-                  ▲ 現地の実際の撮影スポット
+                <img src={selectedSpot.imageUrl} alt="現場写真" style={{ width: '100%', height: '240px', objectFit: 'cover', border: '2px solid #38bdf8' }} />
+                <div className="font-dot" style={{ textAlign: 'center', color: '#38bdf8', fontSize: '0.85rem', marginTop: '6px' }}>
+                  ▲ 現地の実際の撮影スポット構図
                 </div>
               </div>
             </div>
 
-            {/* 名言＆BGM */}
-            <div style={{ background: 'rgba(6, 20, 46, 0.9)', border: '1px solid #1e40af', padding: '12px', marginBottom: '20px' }}>
-              <div style={{ color: '#fbbf24', fontFamily: 'var(--font-mincho)', fontSize: '1.1rem', marginBottom: '6px' }}>
-                {selectedSpot.famousQuote}
+            {/* オタク共感キャプション ＆ 名言 */}
+            <div style={{ background: 'rgba(234, 88, 12, 0.2)', border: '1px solid #ea580c', padding: '14px', marginBottom: '20px', borderRadius: '4px' }}>
+              <div style={{ color: '#fbbf24', fontFamily: 'var(--font-mincho)', fontSize: '1.15rem', marginBottom: '6px', fontWeight: 'bold' }}>
+                {selectedSpot.otakuCaption}
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: '#38bdf8' }}>
-                <Volume2 size={16} /> 劇中使用曲・モチーフ音響: <strong>{selectedSpot.bgmName}</strong>
+              <div style={{ color: '#fffdf8', fontStyle: 'italic', fontSize: '0.95rem' }}>
+                作中名言: {selectedSpot.famousQuote}
               </div>
             </div>
 
             {/* 熱量長文考察本文 */}
-            <div className="retro-box-light" style={{ padding: '16px', lineHeight: '1.8', whiteSpace: 'pre-line' }}>
+            <div className="retro-box-light" style={{ padding: '18px', lineHeight: '1.8', whiteSpace: 'pre-line' }}>
               <h4 className="font-dot" style={{ color: '#1e293b', borderBottom: '2px solid #0b2545', paddingBottom: '4px', marginBottom: '12px', fontSize: '1.1rem' }}>
-                ◆ AIR オタクによる聖地構造 ＆ シーン長文考察
+                ◆ AIR 聖地とアニメ作中画角の厳密対比検証
               </h4>
               <div style={{ fontSize: '0.95rem' }}>
                 {selectedSpot.details}
@@ -182,14 +179,6 @@ export default function SceneViewer() {
           </div>
         </div>
       )}
-
-      <style>{`
-        .spot-card:hover {
-          transform: translateY(-3px);
-          border-color: #fbbf24 !important;
-          box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,0 +1,78 @@
+import React from 'react';
+import { Flame, BookOpen, Heart, Sparkles, Feather } from 'lucide-react';
+
+export default function OtakuPassionEssay() {
+  return (
+    <div className="retro-box retro-box-gold animate-fade-in" style={{ padding: '24px', background: 'linear-gradient(180deg, #0c2647 0%, #031024 100%)' }}>
+      <div className="retro-title-bar retro-title-bar-orange" style={{ fontSize: '1.25rem' }}>
+        <Flame size={22} color="#fbbf24" />
+        <span>【当時のオタクの熱狂手記】 2000-2005 AIRに人生を狂わされた者たちの魂の記憶</span>
+      </div>
+
+      {/* 熱狂タイトルバナー */}
+      <div style={{ background: 'rgba(234, 88, 12, 0.25)', border: '2px solid #ea580c', padding: '18px', borderRadius: '4px', marginBottom: '20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+          <Feather color="#fbbf24" size={28} className="glow-text" />
+          <h2 className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.5rem', fontWeight: 'bold' }}>
+            「あの夏、僕たちはみんな観鈴の傍にいた」
+          </h2>
+        </div>
+        <p style={{ fontSize: '0.92rem', color: '#fed7aa', lineHeight: '1.7' }}>
+          BBSなどの簡易な書き込みではない。2000年の原作PCゲーム発売、そして2005年の京都アニメーション版放送の際、熱狂的なKeyオタクたちが夜を徹して語り明かし、ノートに書き殴った「魂の熱量」そのものをここにアーカイブする。
+        </p>
+      </div>
+
+      {/* 魂の長文コラム 1 */}
+      <div className="retro-box-light" style={{ padding: '24px', marginBottom: '20px', background: '#fffdf7' }}>
+        <h3 className="font-mincho" style={{ color: '#0f172a', fontSize: '1.35rem', borderBottom: '2px dashed #ea580c', paddingBottom: '8px', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <BookOpen color="#ea580c" size={22} /> コラム①: なぜAIRという作品は25年経っても「俺たちの胸」を締め付け続けるのか
+        </h3>
+
+        <div className="font-mincho" style={{ fontSize: '1.02rem', color: '#0f172a', lineHeight: '2.0', whiteSpace: 'pre-line' }}>
+          {`2000年代初頭、いわゆる「泣きゲー」の金字塔として降臨した『AIR』。
+当時のオタクにとって、この作品は単なる美少女ゲームやアニメの枠を完全に超越していた。
+
+主人公・国崎往人は、あてもなく流れる人形使いだ。母親から引き継いだ「空にいる少女」を救うという途方もない使命だけを抱え、空腹に耐えながら田舎町へとたどり着く。
+そこで出会うのが、神尾観鈴という少女だ。
+
+観鈴は無邪気で、少しどんくさくて、「ガオ…」と口癖を呟きながら武田商店の自販機で「どろり濃いジュース」を買うような、どこにでもいる普通の女の子に見えた。
+しかし彼女は、「人と親しくなるとどうしても泣いてしまう」という悲しい呪いを背負っていた。
+誰かと友情を深め、愛を知れば知るほど、肉体と精神が蝕まれていく——。
+
+オタクたちが衝撃を受けたのは、この「逃げ場のない切なさ」だった。
+観鈴を愛すれば愛するほど、観鈴を追い詰めてしまう。往人は自分の存在そのものが観鈴を傷つけている現実に絶望し、そして「カラス（そら）」となって観鈴の最期を見守る決断をする。
+
+AIRが残酷で、そして世界一美しいのは、ハッピーエンドという安易な救いを用意しなかったことだ。
+観鈴は最後に、車椅子の身体を押して、晴子の胸へと歩みを進める。
+「もう、ゴールしていいよね……」「私、頑張ったよね……」
+あの言葉とともに、煙樹ヶ浜の茜色の空の下で命の灯火を燃やし尽くした観鈴の姿は、当時のオタクたちの心に一生消えない烙印として刻み込まれたのだ。`}
+        </div>
+      </div>
+
+      {/* 魂の長文コラム 2 */}
+      <div className="retro-box-light" style={{ padding: '24px', marginBottom: '20px', background: '#fffdf7' }}>
+        <h3 className="font-mincho" style={{ color: '#0f172a', fontSize: '1.35rem', borderBottom: '2px dashed #0284c7', paddingBottom: '8px', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Sparkles color="#0284c7" size={22} /> コラム②: 聖地・和歌山県美浜町に立ったとき、オタクの身体を駆け巡る「あの感覚」
+        </h3>
+
+        <div className="font-mincho" style={{ fontSize: '1.02rem', color: '#0f172a', lineHeight: '2.0', whiteSpace: 'pre-line' }}>
+          {`新幹線と特急くろしお、あるいは夜行バスを乗り継いで、紀州鉄道の西御坊駅へ降り立つ。
+そこから西川沿いの水路線路橋を歩き、浜の瀬バス停、吉原の堤防、そして煙樹ヶ浜へと向かう。
+
+現地に立った瞬間、オタクは息をのむ。
+観光地として整備された派手なスポットは何一つない。あるのは、瓦屋根の静かな集落と、武田商店横の古い自販機と、波音だけが響く砂利浜だ。
+だが、それこそが本物なのだ。
+
+真夏の正午、カンカンと照りつける太陽とアスファルトの陽炎の中、堤防の縁に腰をかける。
+耳を澄ますと、潮風に乗ってヒグラシの「カナカナカナ…」という声と「ガラガラ…」と引く煙樹ヶ浜の小石の音が聴こえてくる。
+その時、誰もが確信する。
+「あぁ、観鈴は本当にここにいたんだ。往人と一緒に、この風を浴びていたんだ」と。
+
+1000年という果てしない時間の重みと、真夏のたった数週間の眩しすぎる日常。
+聖地巡礼とは、単にアニメのロケ地を写真に収める作業ではない。
+観鈴と往人が駆け抜けた「あの夏」の匂いと温度を、自分自身の身体に刻み込む儀式なのだ。`}
+        </div>
+      </div>
+    </div>
+  );
+}
