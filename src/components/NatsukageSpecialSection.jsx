@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sun, CloudSun, Calendar, Play, Square, Heart, Sparkles, Feather } from 'lucide-react';
+import { Sun, Sparkles, Feather, Play, Square } from 'lucide-react';
 import { playMelody, stopMelody } from '../utils/audioSynth';
 
 export default function NatsukageSpecialSection() {
@@ -16,21 +16,37 @@ export default function NatsukageSpecialSection() {
   };
 
   return (
-    <div className="retro-box retro-box-gold animate-fade-in" style={{ padding: '24px', background: 'linear-gradient(180deg, #0b2545 0%, #06142e 100%)' }}>
+    <div className="retro-box retro-box-gold animate-fade-in" style={{ padding: '24px', background: 'linear-gradient(180deg, #0c2647 0%, #031024 100%)' }}>
       <div className="retro-title-bar retro-title-bar-orange" style={{ fontSize: '1.25rem' }}>
         <Sparkles size={22} color="#fbbf24" />
         <span>【特別特集】 旋律『夏影 -Natsukage-』と「あの夏」を取り戻す巡礼時期の美学</span>
       </div>
 
+      {/* 夕焼けとひまわりのオマージュ画像ギャラリー */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px', marginBottom: '20px' }}>
+        <div style={{ position: 'relative', borderRadius: '4px', overflow: 'hidden', border: '2px solid #fbbf24' }}>
+          <img src="/images/sunset_beach.png" alt="煙樹ヶ浜の夕焼けと夏影" style={{ width: '100%', height: '220px', objectFit: 'cover' }} />
+          <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', background: 'rgba(0,0,0,0.75)', padding: '6px 12px', fontSize: '0.85rem', color: '#fbbf24', fontFamily: 'var(--font-dot)' }}>
+            ▲ 煙樹ヶ浜で紀伊水道に落ちる夕焼けと『夏影』のシンクロ
+          </div>
+        </div>
+        <div style={{ position: 'relative', borderRadius: '4px', overflow: 'hidden', border: '2px solid #38bdf8' }}>
+          <img src="/images/misuzu_sea.png" alt="堤防とひまわりと観鈴の空" style={{ width: '100%', height: '220px', objectFit: 'cover' }} />
+          <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', background: 'rgba(0,0,0,0.75)', padding: '6px 12px', fontSize: '0.85rem', color: '#38bdf8', fontFamily: 'var(--font-dot)' }}>
+            ▲ 眩しい青空、堤防、そして無邪気な観鈴の笑顔の残像
+          </div>
+        </div>
+      </div>
+
       {/* 夏影BGM即時再生バナー */}
-      <div style={{ background: 'rgba(234, 88, 12, 0.2)', border: '2px solid #f97316', padding: '16px', borderRadius: '4px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+      <div style={{ background: 'rgba(234, 88, 12, 0.25)', border: '2px solid #f97316', padding: '16px', borderRadius: '4px', marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Feather color="#fbbf24" size={28} className="glow-text" />
+          <Feather color="#fbbf24" size={32} className="glow-text" />
           <div>
-            <div className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.2rem', fontWeight: 'bold' }}>
+            <div className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.25rem', fontWeight: 'bold' }}>
               『夏影』のピアノが聴こえたら、そこがあなたの「あの夏」になる。
             </div>
-            <div style={{ fontSize: '0.85rem', color: '#fed7aa' }}>
+            <div style={{ fontSize: '0.88rem', color: '#fed7aa' }}>
               麻枝准が生み出した不朽の名曲。煙樹ヶ浜の波音と蝉の声に身を委ねてお聴きください。
             </div>
           </div>
@@ -39,7 +55,7 @@ export default function NatsukageSpecialSection() {
         <button 
           onClick={handlePlayNatsukage}
           className={`retro-btn ${isPlayingNatsukage ? 'retro-btn-active' : ''}`}
-          style={{ padding: '10px 20px', fontSize: '1rem' }}
+          style={{ padding: '10px 22px', fontSize: '1.05rem' }}
         >
           {isPlayingNatsukage ? <Square size={18} /> : <Play size={18} />}
           {isPlayingNatsukage ? '夏影を停止する' : '『夏影』試聴再生'}
@@ -47,12 +63,12 @@ export default function NatsukageSpecialSection() {
       </div>
 
       {/* 情緒溢れる長文エッセイ・時期アドバイス */}
-      <div className="retro-box-light" style={{ padding: '20px', marginBottom: '20px', background: '#fffdf7' }}>
-        <h3 className="font-mincho" style={{ color: '#1e293b', fontSize: '1.4rem', borderBottom: '2px dashed #ea580c', paddingBottom: '8px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Sun color="#f97316" /> なぜ7月下旬〜8月中旬、陽炎の立つ「あの季節」に行かねばならないのか
+      <div className="retro-box-light" style={{ padding: '24px', marginBottom: '20px', background: '#fffdf7' }}>
+        <h3 className="font-mincho" style={{ color: '#1e293b', fontSize: '1.45rem', borderBottom: '2px dashed #ea580c', paddingBottom: '8px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <Sun color="#f97316" size={24} /> なぜ7月下旬〜8月中旬、陽炎の立つ「あの季節」に行かねばならないのか
         </h3>
 
-        <div className="font-mincho" style={{ fontSize: '1rem', color: '#1e293b', lineHeight: '1.95', whiteSpace: 'pre-line' }}>
+        <div className="font-mincho" style={{ fontSize: '1.05rem', color: '#0f172a', lineHeight: '2.0', whiteSpace: 'pre-line' }}>
           {`AIRという作品において、夏は単なる四季の一節ではない。
 それは「千年の孤独」であり、「一生に一度しか訪れない永遠の日常」であり、そして「いつか終わってしまうからこそ尊い命の輝き」そのものである。
 
@@ -84,35 +100,35 @@ export default function NatsukageSpecialSection() {
       </div>
 
       {/* 季節ごとの巡礼おすすめ度・情緒インジケーター */}
-      <div style={{ background: 'rgba(6, 20, 46, 0.9)', border: '1px solid #1d5f8a', padding: '16px', borderRadius: '4px' }}>
-        <h4 className="font-dot" style={{ color: '#7dd3fc', marginBottom: '12px', fontSize: '1.05rem' }}>
+      <div style={{ background: 'rgba(6, 20, 46, 0.9)', border: '1px solid #1d5f8a', padding: '18px', borderRadius: '4px' }}>
+        <h4 className="font-dot" style={{ color: '#7dd3fc', marginBottom: '14px', fontSize: '1.1rem' }}>
           ■ 季節別『AIR』世界観シンクロ率 ＆ 感情エモーショナル度
         </h4>
 
         <div className="grid-3col">
-          <div style={{ background: 'rgba(234, 88, 12, 0.2)', border: '1px solid #f97316', padding: '12px', borderRadius: '4px' }}>
-            <div className="font-dot" style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '1rem', marginBottom: '4px' }}>
+          <div style={{ background: 'rgba(234, 88, 12, 0.25)', border: '1px solid #f97316', padding: '14px', borderRadius: '4px' }}>
+            <div className="font-dot" style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '1.05rem', marginBottom: '6px' }}>
               盛夏 [7月下旬〜8月中旬] ★★★★★
             </div>
-            <div style={{ fontSize: '0.82rem', color: '#fed7aa' }}>
+            <div style={{ fontSize: '0.85rem', color: '#fed7aa' }}>
               【最高峰のシンクロ度】セミの声、強烈な日差し、夕暮れの茜空。作中の空気感・匂い・温度をそのまま全身で体感できる奇跡の季節。
             </div>
           </div>
 
-          <div style={{ background: 'rgba(30, 88, 153, 0.2)', border: '1px solid #1e40af', padding: '12px', borderRadius: '4px' }}>
-            <div className="font-dot" style={{ color: '#7dd3fc', fontWeight: 'bold', fontSize: '1rem', marginBottom: '4px' }}>
+          <div style={{ background: 'rgba(30, 88, 153, 0.25)', border: '1px solid #1e40af', padding: '14px', borderRadius: '4px' }}>
+            <div className="font-dot" style={{ color: '#7dd3fc', fontWeight: 'bold', fontSize: '1.05rem', marginBottom: '6px' }}>
               初夏・残暑 [6月〜7月上旬 / 8月下旬] ★★★★☆
             </div>
-            <div style={{ fontSize: '0.82rem', color: '#cbd5e1' }}>
+            <div style={{ fontSize: '0.85rem', color: '#cbd5e1' }}>
               【夏の余韻と切なさ】混雑を避けつつ、初夏の青空や夏の終わりの淋しさをじっくり味わいたい大人向けの情緒あふれる季節。
             </div>
           </div>
 
-          <div style={{ background: 'rgba(15, 23, 42, 0.6)', border: '1px solid #475569', padding: '12px', borderRadius: '4px' }}>
-            <div className="font-dot" style={{ color: '#94a3b8', fontWeight: 'bold', fontSize: '1rem', marginBottom: '4px' }}>
+          <div style={{ background: 'rgba(15, 23, 42, 0.7)', border: '1px solid #475569', padding: '14px', borderRadius: '4px' }}>
+            <div className="font-dot" style={{ color: '#94a3b8', fontWeight: 'bold', fontSize: '1.05rem', marginBottom: '6px' }}>
               オフシーズン [秋〜春] ★★★☆☆
             </div>
-            <div style={{ fontSize: '0.82rem', color: '#94a3b8' }}>
+            <div style={{ fontSize: '0.85rem', color: '#94a3b8' }}>
               【静かなる巡礼】観光客が少なく静かにロケ地を撮影できるが、やはりAIRの真価は夏の風と波音の中にこそ存在する。
             </div>
           </div>
