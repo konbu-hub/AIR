@@ -1,4 +1,4 @@
-// AIR 聖地巡礼 厳密アニメ名シーン再絵画＆オタク熱量キャプション データベース
+// AIR 聖地巡礼 厳密アニメ名シーン再絵画＆オタク熱量キャプション データベース (完全ローカル画像固定版)
 
 export const PILGRIMAGE_SPOTS = [
   {
@@ -9,8 +9,8 @@ export const PILGRIMAGE_SPOTS = [
     sceneName: "TVアニメ第1話 08:24 / DREAM編 / 往人が線路の小橋を渡り、カラス(そら)が手すりにとまる名カット",
     bgmName: "夏影 -Natsukage- / 野のはら",
     famousQuote: "「俺は旅をしている。どこまでも続く空の下を……」",
-    otakuCaption: "「わかる！！！」第1話で人形を抱えた往人が西川の水路橋を渡り、カラスのそらが赤い手すりにとまって見つめるあの印象的なカット！現地の「やまばデイサービス」横の橋と護岸のカーブが完璧に一致！",
-    shortDesc: "西御坊駅から西川沿いに南下した場所にある水路と線路橋。アニメ第1話の背景美術と角度・建物が完璧に一致する聖地。",
+    otakuCaption: "「わかる！！！」第1話で人形を抱えた往人が西川の水路橋を渡り、カラスのそらが赤い手すりにとまって見つめるあのカット！現地の「やまばデイサービス」横の橋と護岸のカーブが完璧に一致！",
+    shortDesc: "西御坊駅から西川沿なに南下した場所にある水路と線路橋。アニメ第1話の背景美術と角度・建物が完璧に一致する聖地。",
     details: `
 【オタクの感情が揺さぶられる厳密な対比】
 アニメ第1話 08分24秒。人形使いの国崎往人が人形を抱えて西川の水路線路橋を渡り、手すりにカラスの「そら」がちょこんととまっているシーン。
@@ -49,7 +49,7 @@ export const PILGRIMAGE_SPOTS = [
 
 【回収順序】ポイント1の水路橋から西川沿いを直進徒歩10分。
 `,
-    imageUrl: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80",
+    imageUrl: "/images/misuzu_sea.png",
     animeCompareImg: "/images/scene_misuzu_juice.png",
     episodeTime: "第1話 11:15 / 第2話",
     lat: 33.8856,
@@ -73,8 +73,8 @@ export const PILGRIMAGE_SPOTS = [
 ・堤防の右側の瓦屋根集落と、左側に広がる太平洋・煙樹ヶ浜の松林。
 ・観鈴が手を広げて歩くコンクリートの縁の高さと角度。
 `,
-    imageUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80",
-    animeCompareImg: "/images/misuzu_sea.png",
+    imageUrl: "/images/scene_yoshihara_walk_link.png",
+    animeCompareImg: "/images/scene_yoshihara_walk_link.png",
     episodeTime: "第1話 14:30",
     lat: 33.8839,
     lng: 135.1567,
@@ -97,7 +97,7 @@ AIR編クライマックス。煙樹ヶ浜の防波堤と松林。紀伊水道�
 ・観鈴が白いワンピースを着て立ち、往人に向かって「私、頑張ったよね…」と微笑む海岸の松林と砂利浜。
 ・波音と「ガラガラ…」と引く小石の音。
 `,
-    imageUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80",
+    imageUrl: "/images/sunset_beach.png",
     animeCompareImg: "/images/scene_sunset_goal.png",
     episodeTime: "AIR編 クライマックス",
     lat: 33.8822,
@@ -108,20 +108,22 @@ AIR編クライマックス。煙樹ヶ浜の防波堤と松林。紀伊水道�
     name: "逢宕神社 (あたごじんじゃ)",
     location: "和歌山県日高郡美浜町和田",
     area: "和歌山・御坊〜美浜ルート [回収Pt.5]",
-    sceneName: "TVアニメ第5話 16:45 / 夏祭りの夜 / 人形芸と二人が石段から見上げる大輪の花火",
+    sceneName: "TVアニメ第5話 16:45 / 夏祭りの夜 / 往人の人形芸と二人が石段から見上げる大輪の花火",
     bgmName: "虹 / 画面",
     famousQuote: "「来年も、その先も、ずっと一緒にいられたらいいな……」",
+    otakuCaption: "「わかる！！！」アニメ第5話で夏祭りの夜、観鈴と往人が並んで石段に腰掛け、夜空に打ち上がる花火を見上げるあのシーン！鳥居から境内に続く急な石段の雰囲気がそのまんま！",
     shortDesc: "美浜町和田地区の急な石段と境内。夏祭りの賑わいと二人の切ない約束の舞台。",
     details: `
 【オタクの感情が揺さぶられる厳密な対比】
 アニメ第5話 16分45秒。夏祭りの夜、鳥居と提灯の灯りに包まれた逢宕神社の石段。
 
 【アニメ画面と実際の現場の完全一致ポイント】
+・鳥居をくぐり、緑に包まれた急な石段を上る境内の本物の撮影アングル。
 ・往人と観鈴が境内の石段に並んで腰掛け、夜空に打ち上がる花火を見上げる角度。
 ・石段の上から見下ろす美浜の夜景。
 `,
-    imageUrl: "https://images.unsplash.com/photo-1609949279531-cf48d64bed89?auto=format&fit=crop&w=1000&q=80",
-    animeCompareImg: "/images/scene_atago_festival.png",
+    imageUrl: "/images/atago_shrine_real.png",
+    animeCompareImg: "/images/atago_shrine_anime.png",
     episodeTime: "第5話 16:45",
     lat: 33.8891,
     lng: 135.1612,
@@ -142,7 +144,7 @@ AIR編クライマックス。煙樹ヶ浜の防波堤と松林。紀伊水道�
 【アニメ画面と実際の現場の完全一致ポイント】
 ・和装の神奈備命が白い羽を広げて佇むアイキャッチの背景そのもの。
 `,
-    imageUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80",
+    imageUrl: "/images/shirasaki_sky.png",
     animeCompareImg: "/images/scene_shirasaki_kanna.png",
     episodeTime: "SUMMER編 アイキャッチ",
     lat: 33.9587,
