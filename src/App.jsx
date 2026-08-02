@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
+import PilgrimagePlanner from './components/PilgrimagePlanner';
 import AnimeRealLinkViewer from './components/AnimeRealLinkViewer';
 import PilgrimageRouteGuide from './components/PilgrimageRouteGuide';
-import PlanSelector from './components/PlanSelector';
 import NatsukageSpecialSection from './components/NatsukageSpecialSection';
 import SceneViewer from './components/SceneViewer';
 import SpotMapList from './components/SpotMapList';
 import OtakuPassionEssay from './components/OtakuPassionEssay';
 import AirDeepEncyclopedia from './components/AirDeepEncyclopedia';
-import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Layers, BookOpen } from 'lucide-react';
+import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Feather, Layers, BookOpen, Compass } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('link');
+  const [activeTab, setActiveTab] = useState('planner'); // デフォルトを巡礼プランナーに設定！
 
   const [feathers, setFeathers] = useState([]);
 
@@ -51,9 +51,17 @@ export default function App() {
         {/* ナビゲーションメニュー */}
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '28px', justifyContent: 'center' }}>
           <button
+            onClick={() => setActiveTab('planner')}
+            className={`modern-btn ${activeTab === 'planner' ? 'modern-btn-active' : ''}`}
+            style={{ padding: '12px 22px', fontSize: '1.05rem', background: activeTab === 'planner' ? 'linear-gradient(180deg, #ea580c 0%, #9a3412 100%)' : 'linear-gradient(180deg, #0284c7 0%, #0369a1 100%)', borderColor: '#fbbf24' }}
+          >
+            <Compass size={20} color="#fbbf24" /> 【1〜15日対応】 聖地巡礼プランナー ＆ 複数土地ガイド
+          </button>
+
+          <button
             onClick={() => setActiveTab('link')}
             className={`modern-btn ${activeTab === 'link' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem', background: activeTab === 'link' ? 'linear-gradient(180deg, #ea580c 0%, #9a3412 100%)' : 'linear-gradient(180deg, #9a3412 0%, #7c2d12 100%)', borderColor: '#fbbf24' }}
+            style={{ padding: '12px 22px', fontSize: '1rem' }}
           >
             <Layers size={18} color="#fbbf24" /> 現実 ＆ アニメ 透過オーバーレイ
           </button>
@@ -63,13 +71,13 @@ export default function App() {
             className={`modern-btn ${activeTab === 'route' ? 'modern-btn-active' : ''}`}
             style={{ padding: '12px 22px', fontSize: '1rem' }}
           >
-            <Navigation size={18} color="#fbbf24" /> 西御坊発 聖地回収ナビ ＆ カット対比
+            <Navigation size={18} color="#fbbf24" /> 西御坊発 聖地回収ルートナビ
           </button>
 
           <button
             onClick={() => setActiveTab('encyclopedia')}
             className={`modern-btn ${activeTab === 'encyclopedia' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem', background: activeTab === 'encyclopedia' ? 'linear-gradient(180deg, #0284c7 0%, #0369a1 100%)' : 'linear-gradient(180deg, #0c4a6e 0%, #0369a1 100%)', borderColor: '#fbbf24' }}
+            style={{ padding: '12px 22px', fontSize: '1rem' }}
           >
             <BookOpen size={18} color="#fbbf24" /> AIRトリビア ＆ 京アニロケハン秘話
           </button>
@@ -91,14 +99,6 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('plan')}
-            className={`modern-btn ${activeTab === 'plan' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem' }}
-          >
-            <Calendar size={18} /> 出発地 ＆ 日数アクセスシミュレーター
-          </button>
-
-          <button
             onClick={() => setActiveTab('scene')}
             className={`modern-btn ${activeTab === 'scene' ? 'modern-btn-active' : ''}`}
             style={{ padding: '12px 22px', fontSize: '1rem' }}
@@ -117,17 +117,17 @@ export default function App() {
 
         {/* メインコンテンツ表示エリア */}
         <main>
+          {activeTab === 'planner' && <PilgrimagePlanner />}
           {activeTab === 'link' && <AnimeRealLinkViewer />}
           {activeTab === 'route' && <PilgrimageRouteGuide />}
           {activeTab === 'encyclopedia' && <AirDeepEncyclopedia />}
           {activeTab === 'natsukage' && <NatsukageSpecialSection />}
           {activeTab === 'essay' && <OtakuPassionEssay />}
-          {activeTab === 'plan' && <PlanSelector />}
           {activeTab === 'scene' && <SceneViewer />}
           {activeTab === 'map' && <SpotMapList />}
         </main>
 
-        {/* 静かで洗練された極小ミニマルフッター（ダサい名言枠・パネルは完全全廃） */}
+        {/* 静かで洗練された極小ミニマルフッター */}
         <footer style={{ textAlign: 'center', marginTop: '48px', paddingBottom: '32px', fontSize: '0.8rem', color: '#64748b' }}>
           <p>
             AIR Pilgrimage Portal & Location Cross-Fade System | © Key / VisualArt's
