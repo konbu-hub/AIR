@@ -8,7 +8,7 @@ import SceneViewer from './components/SceneViewer';
 import SpotMapList from './components/SpotMapList';
 import OtakuPassionEssay from './components/OtakuPassionEssay';
 import AirDeepEncyclopedia from './components/AirDeepEncyclopedia';
-import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Feather, Layers, BookOpen } from 'lucide-react';
+import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Layers, BookOpen } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('link');
@@ -127,19 +127,10 @@ export default function App() {
           {activeTab === 'map' && <SpotMapList />}
         </main>
 
-        {/* フッター */}
-        <footer className="modern-card modern-card-gold" style={{ textAlign: 'center', marginTop: '40px', padding: '28px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginBottom: '12px', color: '#fbbf24' }}>
-            <Feather size={20} className="glow-text" />
-            <span className="font-mincho" style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#ffffff' }}>
-              「人は過去の思い出だけで生きていくことはできない。でも、忘れてはいけない夏の記憶がある。」
-            </span>
-          </div>
-          <p style={{ marginBottom: '8px', color: '#38bdf8', fontSize: '0.95rem' }}>
-            AIR 聖地巡礼コンプリートガイド ＆ 現実 ＆ アニメ 透過オーバーレイポータル
-          </p>
-          <p style={{ fontSize: '0.82rem', color: '#64748b' }}>
-            Presented for All AIR Fans | Dedicated to Misuzu Kamio & Yukito Kunisaki | Key / VisualArt's
+        {/* 静かで洗練された極小ミニマルフッター（ダサい名言枠・パネルは完全全廃） */}
+        <footer style={{ textAlign: 'center', marginTop: '48px', paddingBottom: '32px', fontSize: '0.8rem', color: '#64748b' }}>
+          <p>
+            AIR Pilgrimage Portal & Location Cross-Fade System | © Key / VisualArt's
           </p>
         </footer>
       </div>
