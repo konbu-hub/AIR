@@ -1,0 +1,279 @@
+@charset "UTF-8";
+
+:root {
+  --bg-deep-blue: #040e21;
+  --bg-sea-blue: #0b2545;
+  --bg-card: #0d2a4d;
+  --bg-retro-panel: #fffdf7;
+  --text-retro-dark: #1e293b;
+  --border-classic: #1d5f8a;
+  --border-gold: #d97706;
+  --accent-cyan: #38bdf8;
+  --accent-gold: #fbbf24;
+  --accent-orange: #f97316;
+  --sky-blue: #7dd3fc;
+  --feather-white: #f8fafc;
+  --table-header: #133966;
+  --font-dot: 'DotGothic16', monospace;
+  --font-mincho: 'Shippori Mincho', 'Sawarabi Mincho', serif;
+  --font-sans: 'M PLUS Rounded 1c', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-deep-blue);
+  background-image: 
+    radial-gradient(circle at 50% 0%, #1e40af 0%, transparent 60%),
+    linear-gradient(to bottom, #040e21 0%, #082046 50%, #030a17 100%);
+  background-attachment: fixed;
+  color: var(--feather-white);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* 2000年代風スクロールバー */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #06142e;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-classic);
+  border: 1px solid var(--accent-cyan);
+}
+
+/* レトロフォント用ユーティリティ */
+.font-dot {
+  font-family: var(--font-dot);
+}
+.font-mincho {
+  font-family: var(--font-mincho);
+}
+
+/* レトロオタクサイト風コンテナ */
+.retro-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* 2000年代風枠線テーブル・パネル */
+.retro-box {
+  background: rgba(13, 42, 77, 0.85);
+  border: 2px solid var(--border-classic);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.15), inset 0 0 8px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.retro-box-gold {
+  border-color: var(--border-gold);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+}
+
+.retro-box-light {
+  background: var(--bg-retro-panel);
+  color: var(--text-retro-dark);
+  border: 2px solid #94a3b8;
+  box-shadow: 3px 3px 0px #334155;
+  border-radius: 2px;
+}
+
+/* 2000年代風見出しタグ */
+.retro-title-bar {
+  background: linear-gradient(90deg, #133966 0%, #1e5899 50%, #133966 100%);
+  border-bottom: 2px solid var(--accent-cyan);
+  color: var(--accent-gold);
+  font-family: var(--font-dot);
+  padding: 8px 14px;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.retro-title-bar-orange {
+  background: linear-gradient(90deg, #9a3412 0%, #ea580c 50%, #9a3412 100%);
+  border-bottom-color: var(--accent-gold);
+}
+
+/* クラシックテーブルスタイル (2000年代HP攻略表) */
+.classic-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  background-color: var(--border-classic);
+  margin-top: 12px;
+}
+
+.classic-table th {
+  background-color: var(--table-header);
+  color: var(--sky-blue);
+  font-family: var(--font-dot);
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #1e40af;
+  font-size: 0.95rem;
+}
+
+.classic-table td {
+  background-color: rgba(6, 20, 46, 0.9);
+  padding: 10px;
+  border: 1px solid rgba(30, 64, 175, 0.4);
+  font-size: 0.9rem;
+}
+
+/* アクセスカウンター風グラフィック */
+.counter-box {
+  background: #000;
+  border: 2px solid #555;
+  padding: 2px 6px;
+  display: inline-flex;
+  gap: 2px;
+  font-family: var(--font-dot);
+  color: #00ff00;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+  box-shadow: inset 0 0 5px #00ff00;
+}
+
+.counter-digit {
+  background: #111;
+  padding: 0 4px;
+  border: 1px solid #333;
+}
+
+/* ボタン・タブ（レトロ＋スムーズUX） */
+.retro-btn {
+  background: linear-gradient(180deg, #1e5899 0%, #133966 100%);
+  color: #fff;
+  border: 1px solid var(--accent-cyan);
+  padding: 8px 16px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 #000;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.retro-btn:hover {
+  background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 #000;
+}
+
+.retro-btn-active {
+  background: linear-gradient(180deg, #ea580c 0%, #9a3412 100%);
+  color: #fff;
+  border-color: var(--accent-gold);
+  box-shadow: inset 1px 1px 3px #000;
+}
+
+/* スライダーカスタム */
+input[type="range"].retro-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #082046;
+  border: 1px solid var(--accent-cyan);
+  outline: none;
+  border-radius: 0;
+}
+
+input[type="range"].retro-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--accent-orange);
+  border: 2px solid var(--accent-gold);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--accent-gold);
+}
+
+/* モーダル表示 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-content {
+  background: #082046;
+  border: 3px solid var(--accent-gold);
+  box-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 4px;
+  padding: 24px;
+  position: relative;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { text-shadow: 0 0 5px var(--accent-cyan); }
+  50% { text-shadow: 0 0 15px var(--accent-gold); }
+}
+
+.glow-text {
+  animation: pulseGlow 3s infinite;
+}
+
+/* レスポンシブグリッド */
+.grid-2col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.grid-3col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .retro-wrapper {
+    padding: 8px;
+  }
+  .retro-title-bar {
+    font-size: 1rem;
+  }
+}
