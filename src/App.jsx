@@ -7,10 +7,11 @@ import NatsukageSpecialSection from './components/NatsukageSpecialSection';
 import SceneViewer from './components/SceneViewer';
 import SpotMapList from './components/SpotMapList';
 import OtakuPassionEssay from './components/OtakuPassionEssay';
-import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Feather, Layers } from 'lucide-react';
+import AirDeepEncyclopedia from './components/AirDeepEncyclopedia';
+import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Feather, Layers, BookOpen } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('link'); // デフォルトを「あーあったわ！現実＆アニメ100%リンク」に設定！
+  const [activeTab, setActiveTab] = useState('link');
 
   const [feathers, setFeathers] = useState([]);
 
@@ -66,6 +67,14 @@ export default function App() {
           </button>
 
           <button
+            onClick={() => setActiveTab('encyclopedia')}
+            className={`modern-btn ${activeTab === 'encyclopedia' ? 'modern-btn-active' : ''}`}
+            style={{ padding: '12px 22px', fontSize: '1rem', background: activeTab === 'encyclopedia' ? 'linear-gradient(180deg, #0284c7 0%, #0369a1 100%)' : 'linear-gradient(180deg, #0c4a6e 0%, #0369a1 100%)', borderColor: '#fbbf24' }}
+          >
+            <BookOpen size={18} color="#fbbf24" /> 【深淵考察】 AIRトリビア ＆ 京アニロケハン秘話
+          </button>
+
+          <button
             onClick={() => setActiveTab('natsukage')}
             className={`modern-btn ${activeTab === 'natsukage' ? 'modern-btn-active' : ''}`}
             style={{ padding: '12px 22px', fontSize: '1rem' }}
@@ -110,6 +119,7 @@ export default function App() {
         <main>
           {activeTab === 'link' && <AnimeRealLinkViewer />}
           {activeTab === 'route' && <PilgrimageRouteGuide />}
+          {activeTab === 'encyclopedia' && <AirDeepEncyclopedia />}
           {activeTab === 'natsukage' && <NatsukageSpecialSection />}
           {activeTab === 'essay' && <OtakuPassionEssay />}
           {activeTab === 'plan' && <PlanSelector />}
