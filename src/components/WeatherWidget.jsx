@@ -26,21 +26,23 @@ export default function WeatherWidget() {
   }, []);
 
   return (
-    <div className="modern-card" style={{ padding: '16px 20px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+    <div className="bright-card" style={{ padding: '16px 24px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <Sun color="#fbbf24" size={28} />
+        <div style={{ background: '#e0f2fe', padding: '10px', borderRadius: '50%' }}>
+          <Sun color="#0284c7" size={28} />
+        </div>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-            <MapPin size={16} color="#38bdf8" />
-            <span style={{ color: '#38bdf8', fontWeight: '700', fontSize: '0.95rem' }}>
-              聖地・和歌山県美浜町のコンディション:
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
+            <MapPin size={16} color="#0284c7" />
+            <span style={{ color: '#0284c7', fontWeight: '700', fontSize: '0.95rem' }}>
+              聖地・和歌山県美浜町の現在のコンディション:
             </span>
           </div>
-          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', fontSize: '0.9rem', color: '#f8fafc' }}>
-            <span>天気: <strong style={{ color: '#fbbf24' }}>{weather.weatherText}</strong></span>
-            <span>気温: <strong style={{ color: '#38bdf8' }}>{weather.temperature}℃</strong></span>
-            <span>風速: <strong style={{ color: '#cbd5e1' }}>{weather.windSpeed} m/s</strong></span>
-            <span>日没 (茜色夕空): <strong style={{ color: '#f97316' }}>{weather.sunsetTime}</strong></span>
+          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', fontSize: '0.92rem', color: '#334155' }}>
+            <span>天気: <strong style={{ color: '#0284c7' }}>{weather.weatherText}</strong></span>
+            <span>気温: <strong style={{ color: '#ea580c' }}>{weather.temperature}℃</strong></span>
+            <span>風速: <strong style={{ color: '#475569' }}>{weather.windSpeed} m/s</strong></span>
+            <span>日の入り (夕焼けタイム): <strong style={{ color: '#d97706' }}>{weather.sunsetTime}</strong></span>
           </div>
         </div>
       </div>

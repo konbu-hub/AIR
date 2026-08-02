@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
-import PilgrimagePlanner from './components/PilgrimagePlanner';
+import SacredSpotComparisonViewer from './components/SacredSpotComparisonViewer';
 import AnimeRealLinkViewer from './components/AnimeRealLinkViewer';
-import PilgrimageRouteGuide from './components/PilgrimageRouteGuide';
-import NatsukageSpecialSection from './components/NatsukageSpecialSection';
-import SceneViewer from './components/SceneViewer';
-import SpotMapList from './components/SpotMapList';
-import OtakuPassionEssay from './components/OtakuPassionEssay';
 import AirDeepEncyclopedia from './components/AirDeepEncyclopedia';
-import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Feather, Layers, BookOpen, Compass } from 'lucide-react';
+import SpotMapList from './components/SpotMapList';
+import { Camera, Layers, BookOpen, MapPin, Feather } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('planner'); // デフォルトを巡礼プランナーに設定！
+  const [activeTab, setActiveTab] = useState('gallery'); // デフォルトを「聖地全対比 ＆ Google Maps アサーション」に一元化！
 
   const [feathers, setFeathers] = useState([]);
 
@@ -45,85 +41,49 @@ export default function App() {
       ))}
 
       <div className="main-container">
-        {/* AIR世界観 ヒーロー ＆ トップバー Header */}
+        {/* AIR 澄み渡る真夏の青空 Header */}
         <Header />
 
-        {/* ナビゲーションメニュー */}
+        {/* 洗練された極上ナビゲーション */}
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '28px', justifyContent: 'center' }}>
           <button
-            onClick={() => setActiveTab('planner')}
-            className={`modern-btn ${activeTab === 'planner' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1.05rem', background: activeTab === 'planner' ? 'linear-gradient(180deg, #ea580c 0%, #9a3412 100%)' : 'linear-gradient(180deg, #0284c7 0%, #0369a1 100%)', borderColor: '#fbbf24' }}
+            onClick={() => setActiveTab('gallery')}
+            className={`bright-btn ${activeTab === 'gallery' ? 'bright-btn-active' : ''}`}
+            style={{ padding: '12px 24px', fontSize: '1.05rem' }}
           >
-            <Compass size={20} color="#fbbf24" /> 【1〜15日対応】 聖地巡礼プランナー ＆ 複数土地ガイド
+            <Camera size={20} /> 全国 AIR 聖地一覧 ＆ 作中対比 (Google Maps)
           </button>
 
           <button
             onClick={() => setActiveTab('link')}
-            className={`modern-btn ${activeTab === 'link' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem' }}
+            className={`bright-btn ${activeTab === 'link' ? 'bright-btn-active' : ''}`}
+            style={{ padding: '12px 24px', fontSize: '1.05rem' }}
           >
-            <Layers size={18} color="#fbbf24" /> 現実 ＆ アニメ 透過オーバーレイ
-          </button>
-
-          <button
-            onClick={() => setActiveTab('route')}
-            className={`modern-btn ${activeTab === 'route' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem' }}
-          >
-            <Navigation size={18} color="#fbbf24" /> 西御坊発 聖地回収ルートナビ
+            <Layers size={20} /> 現実 ＆ アニメ 透過オーバーレイ
           </button>
 
           <button
             onClick={() => setActiveTab('encyclopedia')}
-            className={`modern-btn ${activeTab === 'encyclopedia' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem' }}
+            className={`bright-btn ${activeTab === 'encyclopedia' ? 'bright-btn-active' : ''}`}
+            style={{ padding: '12px 24px', fontSize: '1.05rem' }}
           >
-            <BookOpen size={18} color="#fbbf24" /> AIRトリビア ＆ 京アニロケハン秘話
-          </button>
-
-          <button
-            onClick={() => setActiveTab('natsukage')}
-            className={`modern-btn ${activeTab === 'natsukage' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem' }}
-          >
-            <Sparkles size={18} color="#fbbf24" /> 旋律『夏影』と夏の美学
-          </button>
-
-          <button
-            onClick={() => setActiveTab('essay')}
-            className={`modern-btn ${activeTab === 'essay' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem' }}
-          >
-            <Flame size={18} color="#fbbf24" /> AIR作品解析 ＆ 長文考察
-          </button>
-
-          <button
-            onClick={() => setActiveTab('scene')}
-            className={`modern-btn ${activeTab === 'scene' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem' }}
-          >
-            <Camera size={18} /> アニメ名シーン対比ギャラリー
+            <BookOpen size={20} /> AIR深遠トリビア ＆ ロケハン秘話
           </button>
 
           <button
             onClick={() => setActiveTab('map')}
-            className={`modern-btn ${activeTab === 'map' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1rem' }}
+            className={`bright-btn ${activeTab === 'map' ? 'bright-btn-active' : ''}`}
+            style={{ padding: '12px 24px', fontSize: '1.05rem' }}
           >
-            <Map size={18} /> Google Maps ナビ
+            <MapPin size={20} /> Google Maps チェックリスト
           </button>
         </div>
 
-        {/* メインコンテンツ表示エリア */}
+        {/* メインコンテンツ */}
         <main>
-          {activeTab === 'planner' && <PilgrimagePlanner />}
+          {activeTab === 'gallery' && <SacredSpotComparisonViewer />}
           {activeTab === 'link' && <AnimeRealLinkViewer />}
-          {activeTab === 'route' && <PilgrimageRouteGuide />}
           {activeTab === 'encyclopedia' && <AirDeepEncyclopedia />}
-          {activeTab === 'natsukage' && <NatsukageSpecialSection />}
-          {activeTab === 'essay' && <OtakuPassionEssay />}
-          {activeTab === 'scene' && <SceneViewer />}
           {activeTab === 'map' && <SpotMapList />}
         </main>
 
