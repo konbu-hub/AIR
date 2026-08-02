@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Sun, Sparkles, Feather, Play, Square } from 'lucide-react';
-import { playMelody, stopMelody } from '../utils/audioSynth';
+import { playNatsukage, stopNatsukage, isNatsukagePlaying } from '../utils/audioSynth';
 
 export default function NatsukageSpecialSection() {
   const [isPlayingNatsukage, setIsPlayingNatsukage] = useState(false);
 
   const handlePlayNatsukage = () => {
     if (isPlayingNatsukage) {
-      stopMelody();
+      stopNatsukage();
       setIsPlayingNatsukage(false);
     } else {
-      playMelody('natsukage');
+      playNatsukage();
       setIsPlayingNatsukage(true);
     }
   };
@@ -47,7 +47,7 @@ export default function NatsukageSpecialSection() {
               『夏影』のピアノが聴こえたら、そこがあなたの「あの夏」になる。
             </div>
             <div style={{ fontSize: '0.88rem', color: '#fed7aa' }}>
-              麻枝准が生み出した不朽の名曲。煙樹ヶ浜の波音と蝉の声に身を委ねてお聴きください。
+              麻枝准が生み出した不朽の名曲。ヘ長調の正確なピアノ旋律と低音和音でお楽しみください。
             </div>
           </div>
         </div>
@@ -96,42 +96,6 @@ export default function NatsukageSpecialSection() {
 風が止み、ヒグラシの声と「ガラガラ…」と引く煙樹ヶ浜の波音だけが響く。
 この瞬間、ヘッドホンで『夏影』を流しながら堤防に腰掛けてほしい。
 言葉を失う。ただ涙が溢れ、1000年の時を超えて観鈴が「ゴール」へと歩みを進めたあの夏の愛おしさが、あなたの魂を包み込むはずだ。`}
-        </div>
-      </div>
-
-      {/* 季節ごとの巡礼おすすめ度・情緒インジケーター */}
-      <div style={{ background: 'rgba(6, 20, 46, 0.9)', border: '1px solid #1d5f8a', padding: '18px', borderRadius: '4px' }}>
-        <h4 className="font-dot" style={{ color: '#7dd3fc', marginBottom: '14px', fontSize: '1.1rem' }}>
-          ■ 季節別『AIR』世界観シンクロ率 ＆ 感情エモーショナル度
-        </h4>
-
-        <div className="grid-3col">
-          <div style={{ background: 'rgba(234, 88, 12, 0.25)', border: '1px solid #f97316', padding: '14px', borderRadius: '4px' }}>
-            <div className="font-dot" style={{ color: '#fbbf24', fontWeight: 'bold', fontSize: '1.05rem', marginBottom: '6px' }}>
-              盛夏 [7月下旬〜8月中旬] ★★★★★
-            </div>
-            <div style={{ fontSize: '0.85rem', color: '#fed7aa' }}>
-              【最高峰のシンクロ度】セミの声、強烈な日差し、夕暮れの茜空。作中の空気感・匂い・温度をそのまま全身で体感できる奇跡の季節。
-            </div>
-          </div>
-
-          <div style={{ background: 'rgba(30, 88, 153, 0.25)', border: '1px solid #1e40af', padding: '14px', borderRadius: '4px' }}>
-            <div className="font-dot" style={{ color: '#7dd3fc', fontWeight: 'bold', fontSize: '1.05rem', marginBottom: '6px' }}>
-              初夏・残暑 [6月〜7月上旬 / 8月下旬] ★★★★☆
-            </div>
-            <div style={{ fontSize: '0.85rem', color: '#cbd5e1' }}>
-              【夏の余韻と切なさ】混雑を避けつつ、初夏の青空や夏の終わりの淋しさをじっくり味わいたい大人向けの情緒あふれる季節。
-            </div>
-          </div>
-
-          <div style={{ background: 'rgba(15, 23, 42, 0.7)', border: '1px solid #475569', padding: '14px', borderRadius: '4px' }}>
-            <div className="font-dot" style={{ color: '#94a3b8', fontWeight: 'bold', fontSize: '1.05rem', marginBottom: '6px' }}>
-              オフシーズン [秋〜春] ★★★☆☆
-            </div>
-            <div style={{ fontSize: '0.85rem', color: '#94a3b8' }}>
-              【静かなる巡礼】観光客が少なく静かにロケ地を撮影できるが、やはりAIRの真価は夏の風と波音の中にこそ存在する。
-            </div>
-          </div>
         </div>
       </div>
     </div>

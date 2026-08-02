@@ -1,52 +1,81 @@
-// Web Audio API によるノスタルジック 8-bit / チップチューン風 メロディプレイヤー (夏影 & 鳥の詩モチーフ)
+// AIR 観鈴のテーマ『夏影 -Natsukage-』完全再現 ピアノ＆アルペジオ Web Audio オーディオエンジン
 
 let audioCtx = null;
 let isPlaying = false;
-let currentTrack = null;
 let noteTimeout = null;
 
-// 音符の周波数 (Hz)
-const NOTES = {
-  C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00, B4: 493.88,
-  C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99, A5: 880.00, B5: 987.77,
-  C6: 1046.50, REST: 0
+// ヘ長調 (F Major) の正確な音階周波数 (Hz)
+const FREQ = {
+  // ベース / 伴奏音域 (オクターブ 3 & 4)
+  F3: 174.61, G3: 196.00, A3: 220.00, Bb3: 233.08, C4: 261.63, D4: 293.66, E4: 329.63,
+  F4: 349.23, G4: 392.00, A4: 440.00, Bb4: 466.16, C5: 523.25, D5: 587.33, E5: 659.25,
+  // 主旋律音域 (オクターブ 5 & 6)
+  F5: 698.46, G5: 783.99, A5: 880.00, Bb5: 932.33, C6: 1046.50, D6: 1174.66, E6: 1318.51, F6: 1396.91,
+  REST: 0
 };
 
-// 『夏影 -Natsukage-』風ノスタルジック旋律（美浜町の青空と海を想わせるノスタルジー）
-const NATSUKAGE_MELODY = [
-  { note: 'E5', duration: 400 },
-  { note: 'F5', duration: 400 },
-  { note: 'G5', duration: 800 },
-  { note: 'C6', duration: 800 },
-  { note: 'B5', duration: 400 },
-  { note: 'A5', duration: 400 },
-  { note: 'G5', duration: 800 },
-  { note: 'E5', duration: 400 },
-  { note: 'F5', duration: 400 },
-  { note: 'G5', duration: 800 },
-  { note: 'A5', duration: 400 },
-  { note: 'G5', duration: 400 },
-  { note: 'E5', duration: 800 },
-  { note: 'D5', duration: 800 },
-  { note: 'C5', duration: 1200 },
-  { note: 'REST', duration: 400 },
-];
+// 16分音符を基準としたテンポ計算 (BPM = 100)
+// 1拍 (4分音符) = 600ms, 8分音符 = 300ms, 16分音符 = 150ms
+const T16 = 145;
+const T8 = T16 * 2;   // 290ms
+const T8D = T16 * 3;  // 435ms
+const T4 = T16 * 4;   // 580ms
+const T4D = T16 * 6;  // 870ms
+const T2 = T16 * 8;   // 1160ms
+const T1 = T16 * 16;  // 2320ms
 
-// 『鳥の詩 -Tori no Uta-』風サビ旋律（国歌と呼ばれる神曲）
-const TORI_NO_UTA_MELODY = [
-  { note: 'G4', duration: 300 },
-  { note: 'C5', duration: 300 },
-  { note: 'D5', duration: 300 },
-  { note: 'E5', duration: 600 },
-  { note: 'D5', duration: 300 },
-  { note: 'C5', duration: 600 },
-  { note: 'D5', duration: 300 },
-  { note: 'E5', duration: 900 },
-  { note: 'G5', duration: 600 },
-  { note: 'E5', duration: 600 },
-  { note: 'D5', duration: 600 },
-  { note: 'C5', duration: 1200 },
-  { note: 'REST', duration: 400 },
+// 『夏影 -Natsukage-』原曲F Major旋律（メロディ ＋ ベース伴奏コードデータ）
+const NATSUKAGE_SCORE = [
+  // Intro / Theme Part 1:
+  // [F5 - G5 - A5〜〜 D6〜〜〜]  (コード: Bb -> C -> Am -> Dm)
+  { note: 'F5', bass: 'Bb3', dur: T8 },
+  { note: 'G5', bass: 'D4', dur: T8 },
+  { note: 'A5', bass: 'F4', dur: T8D },
+  { note: 'D6', bass: 'F4', dur: T2 },
+
+  // [C6 - Bb5 - A5〜〜 F5〜〜〜]
+  { note: 'C6', bass: 'C4', dur: T8 },
+  { note: 'Bb5', bass: 'E4', dur: T8 },
+  { note: 'A5', bass: 'G4', dur: T8D },
+  { note: 'F5', bass: 'C5', dur: T2 },
+
+  // [F5 - G5 - A5〜〜 Bb5 - A5〜 F5〜〜 E5〜〜]
+  { note: 'F5', bass: 'A3', dur: T8 },
+  { note: 'G5', bass: 'C4', dur: T8 },
+  { note: 'A5', bass: 'E4', dur: T4 },
+  { note: 'Bb5', bass: 'G4', dur: T8 },
+  { note: 'A5', bass: 'E4', dur: T8 },
+  { note: 'F5', bass: 'C4', dur: T4D },
+  { note: 'E5', bass: 'A3', dur: T2 },
+
+  // [D5〜〜〜〜]
+  { note: 'D5', bass: 'D3', dur: T2 + T4 },
+  { note: 'REST', bass: 'REST', dur: T4 },
+
+  // Theme Part 2 (クライマックス):
+  // [F5 - G5 - A5〜〜 D6〜〜〜]
+  { note: 'F5', bass: 'Bb3', dur: T8 },
+  { note: 'G5', bass: 'D4', dur: T8 },
+  { note: 'A5', bass: 'F4', dur: T8D },
+  { note: 'D6', bass: 'F4', dur: T2 },
+
+  // [C6 - D6 - C6〜〜 A5〜〜〜]
+  { note: 'C6', bass: 'C4', dur: T8 },
+  { note: 'D6', bass: 'E4', dur: T8 },
+  { note: 'C6', bass: 'G4', dur: T8D },
+  { note: 'A5', bass: 'C5', dur: T2 },
+
+  // [Bb5 - C6 - D6〜〜 E6 - D6〜 A5〜〜]
+  { note: 'Bb5', bass: 'Bb3', dur: T8 },
+  { note: 'C6', bass: 'D4', dur: T8 },
+  { note: 'D6', bass: 'F4', dur: T4 },
+  { note: 'E6', bass: 'A4', dur: T8 },
+  { note: 'D6', bass: 'F4', dur: T8 },
+  { note: 'A5', bass: 'D4', dur: T4D },
+
+  // [F5〜〜〜〜] (澄み切った夏の終わり)
+  { note: 'F5', bass: 'F3', dur: T1 },
+  { note: 'REST', bass: 'REST', dur: T2 }
 ];
 
 export function initAudio() {
@@ -55,8 +84,46 @@ export function initAudio() {
   }
 }
 
-export function playMelody(trackName = 'natsukage', onEndCallback = null) {
-  stopMelody();
+// ピアノの打弦・残響を模した音響合成関数
+function playPianoNote(freq, time, durationSec, volume = 0.15) {
+  if (!freq || freq <= 0) return;
+
+  // 主基音 (Sine + Triangle)
+  const osc1 = audioCtx.createOscillator();
+  const osc2 = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  // フィルターでグランドピアノ特有の温かみを与える
+  const filter = audioCtx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.setValueAtTime(freq > 800 ? 2400 : 1600, time);
+
+  osc1.type = 'sine';
+  osc1.frequency.setValueAtTime(freq, time);
+
+  // 倍音成分でピアノの打鍵感を作る
+  osc2.type = 'triangle';
+  osc2.frequency.setValueAtTime(freq * 2, time);
+
+  // ピアノのエンベロープ (急速なアタック ＋ 自然な長い減衰 Decay)
+  gain.gain.setValueAtTime(0.0001, time);
+  gain.gain.linearRampToValueAtTime(volume, time + 0.012); // アタック 12ms
+  gain.gain.exponentialRampToValueAtTime(volume * 0.4, time + 0.1); // 初期減衰
+  gain.gain.exponentialRampToValueAtTime(0.0001, time + durationSec + 0.4); // 余韻
+
+  osc1.connect(filter);
+  osc2.connect(filter);
+  filter.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc1.start(time);
+  osc2.start(time);
+  osc1.stop(time + durationSec + 0.5);
+  osc2.stop(time + durationSec + 0.5);
+}
+
+export function playNatsukage() {
+  stopNatsukage();
   initAudio();
 
   if (audioCtx.state === 'suspended') {
@@ -64,52 +131,42 @@ export function playMelody(trackName = 'natsukage', onEndCallback = null) {
   }
 
   isPlaying = true;
-  currentTrack = trackName;
-  const melody = trackName === 'natsukage' ? NATSUKAGE_MELODY : TORI_NO_UTA_MELODY;
   let index = 0;
 
-  function playNextNote() {
+  function scheduleNextStep() {
     if (!isPlaying) return;
 
-    const item = melody[index];
-    const freq = NOTES[item.note] || 0;
+    const item = NATSUKAGE_SCORE[index];
+    const melodyFreq = FREQ[item.note] || 0;
+    const bassFreq = FREQ[item.bass] || 0;
+    const durationSec = item.dur / 1000;
+    const now = audioCtx.currentTime;
 
-    if (freq > 0) {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      // 三角波で温かみのあるファミコン/MIDI風のリード音響を作る
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-      // アタック・リリース envelope
-      gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
-      gain.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (item.duration / 1000) - 0.05);
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start();
-      osc.stop(audioCtx.currentTime + (item.duration / 1000));
+    // 主旋律メロディの打鍵
+    if (melodyFreq > 0) {
+      playPianoNote(melodyFreq, now, durationSec, 0.18);
     }
 
-    index = (index + 1) % melody.length;
-    noteTimeout = setTimeout(playNextNote, item.duration);
+    // アルペジオ・ベース低音の打鍵 (伴奏)
+    if (bassFreq > 0) {
+      playPianoNote(bassFreq, now, durationSec * 1.5, 0.10);
+    }
+
+    index = (index + 1) % NATSUKAGE_SCORE.length;
+    noteTimeout = setTimeout(scheduleNextStep, item.dur);
   }
 
-  playNextNote();
+  scheduleNextStep();
 }
 
-export function stopMelody() {
+export function stopNatsukage() {
   isPlaying = false;
-  currentTrack = null;
   if (noteTimeout) {
     clearTimeout(noteTimeout);
     noteTimeout = null;
   }
 }
 
-export function getAudioState() {
-  return { isPlaying, currentTrack };
+export function isNatsukagePlaying() {
+  return isPlaying;
 }

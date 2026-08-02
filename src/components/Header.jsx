@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-import { Play, Square, Music, Feather, Sparkles, Heart } from 'lucide-react';
-import { playMelody, stopMelody } from '../utils/audioSynth';
+import { Play, Square, Music, Feather } from 'lucide-react';
+import { playNatsukage, stopNatsukage, isNatsukagePlaying } from '../utils/audioSynth';
 import WeatherWidget from './WeatherWidget';
 
 export default function Header() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [activeTrack, setActiveTrack] = useState('natsukage');
 
-  const handleToggleBgm = (track) => {
-    if (isPlaying && activeTrack === track) {
-      stopMelody();
+  const handleToggleNatsukage = () => {
+    if (isPlaying) {
+      stopNatsukage();
       setIsPlaying(false);
     } else {
-      playMelody(track);
+      playNatsukage();
       setIsPlaying(true);
-      setActiveTrack(track);
     }
   };
 
@@ -73,39 +71,29 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Web Audio BGMプレイヤー (夏影 & 鳥の詩) */}
-      <div className="retro-box retro-box-gold" style={{ padding: '14px', marginBottom: '16px' }}>
+      {/* 『夏影 -Natsukage-』専用 BGM プレイヤー */}
+      <div className="retro-box retro-box-gold" style={{ padding: '16px', marginBottom: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Music color="#fbbf24" size={22} className="glow-text" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Music color="#fbbf24" size={24} className="glow-text" />
             <div>
-              <span className="font-dot" style={{ color: '#38bdf8', fontSize: '1rem', fontWeight: 'bold' }}>
-                Nostalgic 8-Bit Melody Player:
-              </span>
-              <span style={{ fontSize: '0.88rem', color: '#f8fafc', marginLeft: '8px' }}>
-                {isPlaying ? (activeTrack === 'natsukage' ? '♪ 演奏中: 夏影 -Natsukage-' : '♪ 演奏中: 鳥の詩 -Tori no Uta-') : '再生ボタンを押すと8bit旋律が流れます'}
-              </span>
+              <div className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.1rem', fontWeight: 'bold' }}>
+                観鈴のテーマ 『夏影 -Natsukage-』 (BGM Player)
+              </div>
+              <div style={{ fontSize: '0.85rem', color: '#cbd5e1', marginTop: '2px' }}>
+                {isPlaying ? '♪ 演奏中: 正確なピッチとエンベロープで奏でられる『夏影』の旋律' : 'クリックすると『夏影』の旋律が流れます'}
+              </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <button
-              onClick={() => handleToggleBgm('natsukage')}
-              className={`retro-btn ${isPlaying && activeTrack === 'natsukage' ? 'retro-btn-active' : ''}`}
-              title="観鈴のテーマ『夏影』風8bitメロディ"
-            >
-              {isPlaying && activeTrack === 'natsukage' ? <Square size={14} /> : <Play size={14} />}
-              夏影 -Natsukage-
-            </button>
-            <button
-              onClick={() => handleToggleBgm('torinouata')}
-              className={`retro-btn ${isPlaying && activeTrack === 'torinouata' ? 'retro-btn-active' : ''}`}
-              title="国歌『鳥の詩』風8bitメロディ"
-            >
-              {isPlaying && activeTrack === 'torinouata' ? <Square size={14} /> : <Play size={14} />}
-              鳥の詩 -Tori no Uta-
-            </button>
-          </div>
+          <button
+            onClick={handleToggleNatsukage}
+            className={`retro-btn ${isPlaying ? 'retro-btn-active' : ''}`}
+            style={{ padding: '10px 20px', fontSize: '1rem' }}
+          >
+            {isPlaying ? <Square size={16} /> : <Play size={16} />}
+            {isPlaying ? '夏影を停止する' : '『夏影』を再生'}
+          </button>
         </div>
       </div>
 
@@ -115,7 +103,7 @@ export default function Header() {
       {/* スクロールニューステロップ */}
       <div style={{ background: '#000', border: '1px solid #38bdf8', padding: '6px 12px', margin: '16px 0', overflow: 'hidden', whiteSpace: 'nowrap', borderRadius: '4px' }}>
         <div style={{ display: 'inline-block', animation: 'marquee 25s linear infinite', color: '#fbbf24', fontFamily: 'var(--font-dot)', fontSize: '0.9rem' }}>
-          【NEWS】AIR 25th Anniversary 聖地巡礼コンプリートデータ公開！ ◆ 和歌山県美浜町（煙樹ヶ浜・浜の瀬バス停・逢宕神社）＆ 由良町白崎海岸 ＆ 兵庫県香美町余部鉄橋 ◆ 舞い散る羽とともにあの夏へ ◆
+          【NEWS】観鈴のテーマ『夏影 -Natsukage-』専用メロディプレイヤーチューニング完了！ ◆ 煙樹ヶ浜の夕焼けと波音、ヒグラシの声とともに聴く奇跡の旋律 ◆
         </div>
       </div>
 
