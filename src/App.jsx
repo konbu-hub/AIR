@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
+import AnimeRealLinkViewer from './components/AnimeRealLinkViewer';
 import PilgrimageRouteGuide from './components/PilgrimageRouteGuide';
 import PlanSelector from './components/PlanSelector';
 import NatsukageSpecialSection from './components/NatsukageSpecialSection';
 import SceneViewer from './components/SceneViewer';
 import SpotMapList from './components/SpotMapList';
 import OtakuPassionEssay from './components/OtakuPassionEssay';
-import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Feather } from 'lucide-react';
+import { Calendar, Sparkles, Camera, Map, Navigation, Flame, Feather, Layers } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('route');
+  const [activeTab, setActiveTab] = useState('link'); // デフォルトを「あーあったわ！現実＆アニメ100%リンク」に設定！
 
   const [feathers, setFeathers] = useState([]);
 
@@ -48,6 +49,14 @@ export default function App() {
 
         {/* ナビゲーションメニュー */}
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '28px', justifyContent: 'center' }}>
+          <button
+            onClick={() => setActiveTab('link')}
+            className={`modern-btn ${activeTab === 'link' ? 'modern-btn-active' : ''}`}
+            style={{ padding: '12px 22px', fontSize: '1.05rem', background: activeTab === 'link' ? 'linear-gradient(180deg, #ea580c 0%, #9a3412 100%)' : 'linear-gradient(180deg, #9a3412 0%, #7c2d12 100%)', borderColor: '#fbbf24' }}
+          >
+            <Layers size={20} color="#fbbf24" /> 【あーーあったわ！！】 現実 ＆ アニメ 100% 透過リンク
+          </button>
+
           <button
             onClick={() => setActiveTab('route')}
             className={`modern-btn ${activeTab === 'route' ? 'modern-btn-active' : ''}`}
@@ -99,6 +108,7 @@ export default function App() {
 
         {/* メインコンテンツ表示エリア */}
         <main>
+          {activeTab === 'link' && <AnimeRealLinkViewer />}
           {activeTab === 'route' && <PilgrimageRouteGuide />}
           {activeTab === 'natsukage' && <NatsukageSpecialSection />}
           {activeTab === 'essay' && <OtakuPassionEssay />}
@@ -116,7 +126,7 @@ export default function App() {
             </span>
           </div>
           <p style={{ marginBottom: '8px', color: '#38bdf8', fontSize: '0.95rem' }}>
-            AIR 聖地巡礼コンプリートガイド ＆ 西御坊〜美浜町 厳密実写対比ナビゲーション
+            AIR 聖地巡礼コンプリートガイド ＆ 現実 ＆ アニメ 100% 透過リンクアーキテクチャ
           </p>
           <p style={{ fontSize: '0.82rem', color: '#64748b' }}>
             Presented for All AIR Fans | Dedicated to Misuzu Kamio & Yukito Kunisaki | Key / VisualArt's
