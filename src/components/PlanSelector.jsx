@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, DollarSign, Train, MapPin, Compass, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { Calendar, MapPin, CheckCircle2, Navigation } from 'lucide-react';
 import { generateFlexiblePlan, ORIGIN_LOCATIONS, TRANSPORT_MODES } from '../data/planData';
 
 export default function PlanSelector({ onSelectDays }) {
@@ -22,55 +22,55 @@ export default function PlanSelector({ onSelectDays }) {
   };
 
   return (
-    <div className="retro-box animate-fade-in">
-      <div className="retro-title-bar">
-        <Calendar size={20} />
-        <span>【全国対応】 聖地巡礼 出発地 ＆ 日数 ＆ 交通最適化シミュレーター</span>
+    <div className="modern-card animate-fade-in">
+      <div className="modern-section-title">
+        <Calendar size={24} />
+        <span>全国対応 聖地巡礼 出発地 ＆ 日数アクセスシミュレーター</span>
       </div>
 
-      {/* 全国対応 出発地選択セクション */}
-      <div style={{ background: 'rgba(3, 105, 161, 0.25)', border: '2px solid #38bdf8', padding: '16px', borderRadius: '4px', marginBottom: '20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+      {/* 全国対応 出発地選択 */}
+      <div style={{ background: 'rgba(2, 132, 199, 0.15)', border: '1px solid rgba(56, 189, 248, 0.3)', padding: '20px', borderRadius: '12px', marginBottom: '24px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
           <MapPin color="#fbbf24" size={20} />
-          <label className="font-dot" style={{ color: '#fbbf24', fontSize: '1.1rem', fontWeight: 'bold' }}>
-            ■ あなたの出発地（お住まいの地域）を選択してください:
+          <label className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.15rem', fontWeight: 'bold' }}>
+            あなたの出発地（お住まいの地域）を選択:
           </label>
         </div>
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
           {Object.values(ORIGIN_LOCATIONS).map((loc) => (
             <button
               key={loc.id}
               onClick={() => setOriginKey(loc.id)}
-              className={`retro-btn ${originKey === loc.id ? 'retro-btn-active' : ''}`}
-              style={{ padding: '8px 14px', fontSize: '0.9rem' }}
+              className={`modern-btn ${originKey === loc.id ? 'modern-btn-active' : ''}`}
+              style={{ padding: '8px 16px', fontSize: '0.9rem' }}
             >
               {loc.name}
             </button>
           ))}
         </div>
 
-        {/* 選択中の出発地アクセス情報 */}
-        <div style={{ background: 'rgba(6, 20, 46, 0.9)', padding: '12px', borderRadius: '4px', marginTop: '12px', borderLeft: '4px solid #fbbf24', fontSize: '0.88rem' }}>
+        {/* 選択中のアクセス情報 */}
+        <div style={{ background: 'rgba(8, 18, 37, 0.85)', padding: '14px', borderRadius: '8px', marginTop: '16px', borderLeft: '4px solid #fbbf24', fontSize: '0.92rem' }}>
           <div style={{ color: '#fbbf24', fontWeight: 'bold', marginBottom: '4px' }}>
-            【{plan.origin.name} から和歌山県美浜町（煙樹ヶ浜）へのアクセス案内】
+            【{plan.origin.name} からの最適アクセスルート】
           </div>
           <div style={{ color: '#f8fafc', marginBottom: '4px' }}>
-            🚄 推奨メインルート: <strong>{plan.origin.shinkansenRoute}</strong>
+            🚄 メインルート: <strong>{plan.origin.shinkansenRoute}</strong>
           </div>
-          <div style={{ color: '#7dd3fc', fontSize: '0.82rem' }}>
-            ✈️ 代替/飛行機ルート: {plan.origin.flightRoute} （片道所要時間: 約{plan.origin.oneWayHours}時間）
+          <div style={{ color: '#38bdf8', fontSize: '0.85rem' }}>
+            ✈️ 飛行機/車代替ルート: {plan.origin.flightRoute} (所要時間: 片道約{plan.origin.oneWayHours}時間)
           </div>
         </div>
       </div>
 
-      {/* 日数選択インターフェース (スライダー + プリセットボタン) */}
-      <div style={{ background: 'rgba(6, 20, 46, 0.8)', padding: '16px', border: '1px solid #0284c7', marginBottom: '20px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '12px' }}>
-          <label className="font-dot" style={{ color: '#fbbf24', fontSize: '1.1rem' }}>
-            ■ 聖地巡礼の滞在日数を選択: <span style={{ color: '#38bdf8', fontSize: '1.5rem', fontWeight: 'bold' }}>{days} 日間</span>
+      {/* 日数選択インターフェース */}
+      <div style={{ background: 'rgba(8, 18, 37, 0.85)', padding: '20px', borderRadius: '12px', border: '1px solid var(--glass-border)', marginBottom: '24px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '14px' }}>
+          <label className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.15rem' }}>
+            聖地巡礼の滞在日数: <span style={{ color: '#38bdf8', fontSize: '1.6rem', fontWeight: 'bold' }}>{days} 日間</span>
           </label>
-          <span style={{ fontSize: '0.85rem', color: '#94a3b8' }}>※ 1日〜15日までスライダーで自由設定可能</span>
+          <span style={{ fontSize: '0.88rem', color: '#94a3b8' }}>1日〜15日までスライダーで調整可能</span>
         </div>
 
         <input
@@ -79,18 +79,18 @@ export default function PlanSelector({ onSelectDays }) {
           max="15"
           value={days}
           onChange={handleSliderChange}
-          className="retro-range"
-          style={{ marginBottom: '16px' }}
+          className="modern-range"
+          style={{ marginBottom: '20px' }}
         />
 
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' }}>
-          <span className="font-dot" style={{ fontSize: '0.85rem', color: '#7dd3fc' }}>クイック選択:</span>
+          <span style={{ fontSize: '0.88rem', color: '#38bdf8' }}>クイックプリセット:</span>
           {presetDays.map((d) => (
             <button
               key={d}
               onClick={() => handlePresetClick(d)}
-              className={`retro-btn ${days === d ? 'retro-btn-active' : ''}`}
-              style={{ padding: '4px 10px', fontSize: '0.85rem' }}
+              className={`modern-btn ${days === d ? 'modern-btn-active' : ''}`}
+              style={{ padding: '6px 12px', fontSize: '0.85rem' }}
             >
               {d}日コース
             </button>
@@ -98,10 +98,10 @@ export default function PlanSelector({ onSelectDays }) {
         </div>
       </div>
 
-      {/* 交通スタイルの選択 */}
-      <div style={{ marginBottom: '20px' }}>
-        <h4 className="font-dot" style={{ color: '#7dd3fc', marginBottom: '10px' }}>
-          ■ {plan.origin.name} 出発のおすすめ移動スタイルを選択:
+      {/* 交通スタイル */}
+      <div style={{ marginBottom: '24px' }}>
+        <h4 className="font-mincho" style={{ color: '#38bdf8', marginBottom: '12px', fontSize: '1.1rem' }}>
+          {plan.origin.name} 出発のおすすめ移動スタイル:
         </h4>
         <div className="grid-3col">
           {Object.values(TRANSPORT_MODES).map((mode) => (
@@ -109,22 +109,22 @@ export default function PlanSelector({ onSelectDays }) {
               key={mode.id}
               onClick={() => setTransportMode(mode.id)}
               style={{
-                background: transportMode === mode.id ? 'rgba(3, 105, 161, 0.4)' : 'rgba(6, 20, 46, 0.85)',
-                border: transportMode === mode.id ? '2px solid #fbbf24' : '1px solid #1d5f8a',
-                padding: '12px',
-                borderRadius: '4px',
+                background: transportMode === mode.id ? 'rgba(2, 132, 199, 0.3)' : 'rgba(8, 18, 37, 0.85)',
+                border: transportMode === mode.id ? '1px solid #fbbf24' : '1px solid rgba(56, 189, 248, 0.2)',
+                padding: '16px',
+                borderRadius: '10px',
                 cursor: 'pointer',
-                transition: 'all 0.2s'
+                transition: 'all 0.25s'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-                <span className="font-dot" style={{ color: transportMode === mode.id ? '#fbbf24' : '#fff', fontWeight: 'bold' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <span style={{ color: transportMode === mode.id ? '#fbbf24' : '#fff', fontWeight: 'bold', fontSize: '0.95rem' }}>
                   {mode.name}
                 </span>
-                {transportMode === mode.id && <CheckCircle2 color="#fbbf24" size={18} />}
+                {transportMode === mode.id && <CheckCircle2 color="#fbbf24" size={20} />}
               </div>
-              <p style={{ fontSize: '0.82rem', color: '#cbd5e1', marginBottom: '8px' }}>{mode.desc}</p>
-              <div style={{ fontSize: '0.78rem', color: '#38bdf8' }}>
+              <p style={{ fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '10px' }}>{mode.desc}</p>
+              <div style={{ fontSize: '0.8rem', color: '#38bdf8' }}>
                 対象: {mode.recommendedFor}
               </div>
             </div>
@@ -132,74 +132,59 @@ export default function PlanSelector({ onSelectDays }) {
         </div>
       </div>
 
-      {/* シミュレーション結果＆概算費用カード */}
-      <div style={{ background: 'linear-gradient(135deg, #0c2647 0%, #0369a1 100%)', border: '2px solid #f59e0b', padding: '18px', borderRadius: '4px', marginBottom: '20px' }}>
-        <h3 className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.4rem', marginBottom: '6px' }}>
+      {/* 費用計算カード */}
+      <div className="modern-card modern-card-gold" style={{ padding: '24px', marginBottom: '24px', background: 'linear-gradient(135deg, rgba(12, 38, 71, 0.95) 0%, rgba(2, 132, 199, 0.4) 100%)' }}>
+        <h3 className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.5rem', marginBottom: '8px' }}>
           {plan.planTitle}
         </h3>
-        <p style={{ fontSize: '0.92rem', color: '#fffdf8', marginBottom: '14px' }}>
+        <p style={{ fontSize: '0.95rem', color: '#f8fafc', marginBottom: '18px' }}>
           {plan.conceptText}
         </p>
 
-        {/* 費用内訳テーブル */}
-        <table className="classic-table">
-          <thead>
-            <tr>
-              <th>項目</th>
-              <th>条件・移動ルート</th>
-              <th>概算費用 ({plan.origin.name}発・1名)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>往復交通費</td>
-              <td>{plan.origin.name} ↔ 御坊/和歌山 往復</td>
-              <td style={{ color: '#fbbf24', fontWeight: 'bold' }}>約 {plan.roundTripTransport.toLocaleString()} 円</td>
-            </tr>
-            <tr>
-              <td>現地移動 (レンタカー/チャリ)</td>
-              <td>{plan.numDays} 日間分</td>
-              <td style={{ color: '#fbbf24', fontWeight: 'bold' }}>約 {plan.totalCarRent.toLocaleString()} 円</td>
-            </tr>
-            <tr>
-              <td>宿泊費目安</td>
-              <td>{Math.max(0, plan.numDays - 1)} 泊分 (温泉旅館/ホテル)</td>
-              <td style={{ color: '#fbbf24', fontWeight: 'bold' }}>約 {plan.totalHotel.toLocaleString()} 円</td>
-            </tr>
-            <tr style={{ background: 'rgba(234, 88, 12, 0.7)' }}>
-              <td style={{ color: '#fff', fontWeight: 'bold' }}>推定コスト合計</td>
-              <td style={{ color: '#fffdf8' }}>最良パフォーマンス最適予算</td>
-              <td style={{ color: '#fbbf24', fontSize: '1.25rem', fontWeight: 'bold' }}>
-                約 {plan.estTotalCost.toLocaleString()} 円
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        {/* 費用内訳 */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px', marginBottom: '16px' }}>
+          <div style={{ background: 'rgba(8, 18, 37, 0.8)', padding: '12px 16px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ fontSize: '0.82rem', color: '#94a3b8' }}>往復交通費概算</div>
+            <div style={{ fontSize: '1.15rem', color: '#fbbf24', fontWeight: 'bold', marginTop: '2px' }}>約 {plan.roundTripTransport.toLocaleString()} 円</div>
+          </div>
+          <div style={{ background: 'rgba(8, 18, 37, 0.8)', padding: '12px 16px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ fontSize: '0.82rem', color: '#94a3b8' }}>現地移動 (レンタカー代)</div>
+            <div style={{ fontSize: '1.15rem', color: '#fbbf24', fontWeight: 'bold', marginTop: '2px' }}>約 {plan.totalCarRent.toLocaleString()} 円</div>
+          </div>
+          <div style={{ background: 'rgba(8, 18, 37, 0.8)', padding: '12px 16px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ fontSize: '0.82rem', color: '#94a3b8' }}>宿泊費目安 ({Math.max(0, plan.numDays - 1)}泊)</div>
+            <div style={{ fontSize: '1.15rem', color: '#fbbf24', fontWeight: 'bold', marginTop: '2px' }}>約 {plan.totalHotel.toLocaleString()} 円</div>
+          </div>
+        </div>
+
+        <div style={{ background: 'linear-gradient(90deg, #ea580c 0%, #c2410c 100%)', padding: '14px 20px', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+          <span className="font-mincho" style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#fff' }}>推定総予算コスト合計</span>
+          <span style={{ fontSize: '1.4rem', fontWeight: 'bold', color: '#fbbf24' }}>約 {plan.estTotalCost.toLocaleString()} 円</span>
+        </div>
       </div>
 
-      {/* 詳細タイムスケジュール行程表 */}
+      {/* 詳細行程 */}
       <div>
-        <h4 className="font-dot" style={{ color: '#fbbf24', fontSize: '1.1rem', marginBottom: '12px' }}>
-          ■ 【{plan.origin.name}発】{plan.numDays}日間の詳細タイムスケジュール
+        <h4 className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.15rem', marginBottom: '14px' }}>
+          【{plan.origin.name}発】{plan.numDays}日間の詳細タイムスケジュール
         </h4>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           {plan.itinerary.map((item, idx) => (
             <div
               key={idx}
               style={{
-                background: 'rgba(6, 20, 46, 0.9)',
+                background: 'rgba(8, 18, 37, 0.85)',
                 borderLeft: '4px solid #38bdf8',
-                borderTop: '1px solid #0284c7',
-                borderRight: '1px solid #0284c7',
-                borderBottom: '1px solid #0284c7',
-                padding: '14px 18px'
+                border: '1px solid rgba(56, 189, 248, 0.2)',
+                borderRadius: '8px',
+                padding: '16px 20px'
               }}
             >
-              <div className="font-dot" style={{ color: '#7dd3fc', fontSize: '1.05rem', fontWeight: 'bold', marginBottom: '8px' }}>
+              <div style={{ color: '#38bdf8', fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '8px', fontFamily: 'var(--font-mincho)' }}>
                 {item.title}
               </div>
-              <ul style={{ paddingLeft: '20px', fontSize: '0.9rem', color: '#e2e8f0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              <ul style={{ paddingLeft: '20px', fontSize: '0.92rem', color: '#e2e8f0', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 {item.events.map((evt, eIdx) => (
                   <li key={eIdx}>{evt}</li>
                 ))}

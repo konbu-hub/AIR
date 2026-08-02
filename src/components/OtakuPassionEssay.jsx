@@ -1,34 +1,34 @@
 import React from 'react';
-import { Flame, BookOpen, Heart, Sparkles, Feather } from 'lucide-react';
+import { Flame, BookOpen, Sparkles, Feather } from 'lucide-react';
 
 export default function OtakuPassionEssay() {
   return (
-    <div className="retro-box retro-box-gold animate-fade-in" style={{ padding: '24px', background: 'linear-gradient(180deg, #0c2647 0%, #031024 100%)' }}>
-      <div className="retro-title-bar retro-title-bar-orange" style={{ fontSize: '1.25rem' }}>
-        <Flame size={22} color="#fbbf24" />
-        <span>【当時のオタクの熱狂手記】 2000-2005 AIRに人生を狂わされた者たちの魂の記憶</span>
+    <div className="modern-card modern-card-gold animate-fade-in">
+      <div className="modern-section-title" style={{ color: '#ea580c' }}>
+        <Flame size={24} color="#fbbf24" />
+        <span>【オタク魂の記録】 AIRという作品が刻んだ熱狂とノスタルジーの真髄</span>
       </div>
 
       {/* 熱狂タイトルバナー */}
-      <div style={{ background: 'rgba(234, 88, 12, 0.25)', border: '2px solid #ea580c', padding: '18px', borderRadius: '4px', marginBottom: '20px' }}>
+      <div style={{ background: 'rgba(234, 88, 12, 0.2)', border: '1px solid #ea580c', padding: '20px', borderRadius: '12px', marginBottom: '24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
           <Feather color="#fbbf24" size={28} className="glow-text" />
           <h2 className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.5rem', fontWeight: 'bold' }}>
             「あの夏、僕たちはみんな観鈴の傍にいた」
           </h2>
         </div>
-        <p style={{ fontSize: '0.92rem', color: '#fed7aa', lineHeight: '1.7' }}>
-          BBSなどの簡易な書き込みではない。2000年の原作PCゲーム発売、そして2005年の京都アニメーション版放送の際、熱狂的なKeyオタクたちが夜を徹して語り明かし、ノートに書き殴った「魂の熱量」そのものをここにアーカイブする。
+        <p style={{ fontSize: '0.95rem', color: '#fed7aa', lineHeight: '1.7' }}>
+          2000年の原作PCゲーム発売、そして2005年の京都アニメーション版放送の際、熱狂的なKeyファンたちが夜を徹して語り明かした「魂の熱量」そのものをここにアーカイブする。
         </p>
       </div>
 
       {/* 魂の長文コラム 1 */}
-      <div className="retro-box-light" style={{ padding: '24px', marginBottom: '20px', background: '#fffdf7' }}>
-        <h3 className="font-mincho" style={{ color: '#0f172a', fontSize: '1.35rem', borderBottom: '2px dashed #ea580c', paddingBottom: '8px', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <BookOpen color="#ea580c" size={22} /> コラム①: なぜAIRという作品は25年経っても「俺たちの胸」を締め付け続けるのか
+      <div className="modern-card-light" style={{ padding: '28px', marginBottom: '24px' }}>
+        <h3 className="font-mincho" style={{ color: '#0f172a', fontSize: '1.4rem', borderBottom: '2px dashed #ea580c', paddingBottom: '10px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <BookOpen color="#ea580c" size={24} /> コラム①: なぜAIRという作品は25年経っても「俺たちの胸」を締め付け続けるのか
         </h3>
 
-        <div className="font-mincho" style={{ fontSize: '1.02rem', color: '#0f172a', lineHeight: '2.0', whiteSpace: 'pre-line' }}>
+        <div className="font-mincho" style={{ fontSize: '1.05rem', color: '#0f172a', lineHeight: '2.05', whiteSpace: 'pre-line' }}>
           {`2000年代初頭、いわゆる「泣きゲー」の金字塔として降臨した『AIR』。
 当時のオタクにとって、この作品は単なる美少女ゲームやアニメの枠を完全に超越していた。
 
@@ -50,12 +50,12 @@ AIRが残酷で、そして世界一美しいのは、ハッピーエンドと�
       </div>
 
       {/* 魂の長文コラム 2 */}
-      <div className="retro-box-light" style={{ padding: '24px', marginBottom: '20px', background: '#fffdf7' }}>
-        <h3 className="font-mincho" style={{ color: '#0f172a', fontSize: '1.35rem', borderBottom: '2px dashed #0284c7', paddingBottom: '8px', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Sparkles color="#0284c7" size={22} /> コラム②: 聖地・和歌山県美浜町に立ったとき、オタクの身体を駆け巡る「あの感覚」
+      <div className="modern-card-light" style={{ padding: '28px', marginBottom: '0' }}>
+        <h3 className="font-mincho" style={{ color: '#0f172a', fontSize: '1.4rem', borderBottom: '2px dashed #0284c7', paddingBottom: '10px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <Sparkles color="#0284c7" size={24} /> コラム②: 聖地・和歌山県美浜町に立ったとき、身体を駆け巡る「あの感覚」
         </h3>
 
-        <div className="font-mincho" style={{ fontSize: '1.02rem', color: '#0f172a', lineHeight: '2.0', whiteSpace: 'pre-line' }}>
+        <div className="font-mincho" style={{ fontSize: '1.05rem', color: '#0f172a', lineHeight: '2.05', whiteSpace: 'pre-line' }}>
           {`新幹線と特急くろしお、あるいは夜行バスを乗り継いで、紀州鉄道の西御坊駅へ降り立つ。
 そこから西川沿いの水路線路橋を歩き、浜の瀬バス停、吉原の堤防、そして煙樹ヶ浜へと向かう。
 

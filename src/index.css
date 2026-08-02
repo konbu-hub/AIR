@@ -1,22 +1,20 @@
 @charset "UTF-8";
 
 :root {
-  --bg-deep-blue: #030b1e;
-  --bg-sky-gradient: linear-gradient(180deg, #0284c7 0%, #0369a1 35%, #0f172a 100%);
-  --bg-card: rgba(12, 38, 71, 0.82);
-  --bg-retro-panel: #fffdf8;
-  --text-retro-dark: #0f172a;
-  --border-sky: #38bdf8;
-  --border-gold: #f59e0b;
+  --bg-dark-base: #060d19;
+  --bg-gradient: linear-gradient(180deg, #0284c7 0%, #0369a1 25%, #081225 70%, #040914 100%);
+  --glass-bg: rgba(11, 23, 44, 0.72);
+  --glass-border: rgba(56, 189, 248, 0.25);
+  --glass-border-gold: rgba(251, 191, 36, 0.35);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   --accent-cyan: #38bdf8;
   --accent-gold: #fbbf24;
   --accent-orange: #f97316;
-  --sky-blue: #bae6fd;
-  --feather-white: #f8fafc;
-  --table-header: #0369a1;
-  --font-dot: 'DotGothic16', monospace;
+  --text-main: #f8fafc;
+  --text-sub: #cbd5e1;
+  --text-muted: #94a3b8;
   --font-mincho: 'Shippori Mincho', 'Sawarabi Mincho', serif;
-  --font-sans: 'M PLUS Rounded 1c', sans-serif;
+  --font-sans: 'M PLUS Rounded 1c', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 * {
@@ -26,31 +24,27 @@
 }
 
 body {
-  background-color: var(--bg-deep-blue);
-  background: var(--bg-sky-gradient);
+  background-color: var(--bg-dark-base);
+  background: var(--bg-gradient);
   background-attachment: fixed;
-  color: var(--feather-white);
+  color: var(--text-main);
   font-family: var(--font-sans);
-  line-height: 1.6;
+  line-height: 1.7;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-/* 舞い散る白い羽根のキーフレーム・アニメーション */
+/* 舞い散る美しい白い羽根アニメーション */
 @keyframes featherFall {
   0% {
-    transform: translateY(-50px) rotate(0deg) translateX(0);
+    transform: translateY(-40px) rotate(0deg) translateX(0);
     opacity: 0;
   }
-  15% {
-    opacity: 0.8;
-  }
-  85% {
-    opacity: 0.8;
-  }
+  15% { opacity: 0.75; }
+  85% { opacity: 0.75; }
   100% {
-    transform: translateY(105vh) rotate(360deg) translateX(100px);
+    transform: translateY(105vh) rotate(360deg) translateX(120px);
     opacity: 0;
   }
 }
@@ -62,211 +56,182 @@ body {
   z-index: 1;
   animation: featherFall linear infinite;
   user-select: none;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.7));
 }
 
-/* 2000年代風スクロールバー */
+/* 現代的な洗練されたスクロールバー */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #031024;
+  background: #040914;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-sky);
-  border: 1px solid var(--accent-gold);
+  background: var(--accent-cyan);
+  border-radius: 4px;
 }
 
-.font-dot { font-family: var(--font-dot); }
 .font-mincho { font-family: var(--font-mincho); }
 
-/* レトロオタクサイト風コンテナ */
-.retro-wrapper {
-  max-width: 1240px;
+/* メインコンテナ */
+.main-container {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 24px 16px;
   position: relative;
   z-index: 2;
 }
 
-/* 2000年代風枠線テーブル・パッションパネル */
-.retro-box {
-  background: var(--bg-card);
-  border: 2px solid var(--border-sky);
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.25), inset 0 0 12px rgba(0, 0, 0, 0.5);
-  border-radius: 6px;
-  padding: 20px;
+/* 現代最高峰のガラスモルフィズムカード */
+.modern-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 12px;
+  padding: 24px;
   margin-bottom: 24px;
-  backdrop-filter: blur(10px);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.retro-box-gold {
-  border-color: var(--border-gold);
-  box-shadow: 0 0 25px rgba(251, 191, 36, 0.3), inset 0 0 12px rgba(0, 0, 0, 0.5);
+.modern-card-gold {
+  border-color: var(--glass-border-gold);
+  box-shadow: 0 8px 32px 0 rgba(251, 191, 36, 0.15);
 }
 
-.retro-box-light {
-  background: var(--bg-retro-panel);
-  color: var(--text-retro-dark);
-  border: 2px solid #cbd5e1;
-  box-shadow: 4px 4px 0px #0f172a;
-  border-radius: 4px;
+.modern-card-light {
+  background: rgba(255, 253, 248, 0.96);
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-/* ヒーロービジュアルバナー (AIRの世界観に没入) */
+/* 現代的なセクションタイトル */
+.modern-section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  font-family: var(--font-mincho);
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* 洗練されたボタン */
+.modern-btn {
+  background: rgba(2, 132, 199, 0.25);
+  color: #f8fafc;
+  border: 1px solid var(--accent-cyan);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.modern-btn:hover {
+  background: rgba(2, 132, 199, 0.6);
+  color: #fff;
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(56, 189, 248, 0.35);
+}
+
+.modern-btn-active {
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  color: #fff;
+  border-color: var(--accent-gold);
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.4);
+}
+
+/* ヒーローセクション */
 .hero-banner {
   position: relative;
-  border-radius: 8px;
+  border-radius: 16px;
   overflow: hidden;
-  border: 3px solid var(--border-gold);
-  box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
-  margin-bottom: 24px;
+  border: 1px solid var(--glass-border-gold);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  margin-bottom: 28px;
   background: #000;
 }
 
 .hero-bg-img {
   width: 100%;
-  height: 380px;
+  height: 420px;
   object-fit: cover;
   opacity: 0.85;
-  filter: saturate(1.1) brightness(0.95);
-  transition: transform 10s ease;
+  filter: saturate(1.15) brightness(0.95);
+  transition: transform 12s ease;
 }
 
 .hero-banner:hover .hero-bg-img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, rgba(3, 105, 161, 0.3) 0%, rgba(3, 11, 30, 0.85) 100%);
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(2, 132, 199, 0.2) 0%, rgba(6, 13, 25, 0.88) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 30px;
+  padding: 36px;
 }
 
-/* 縦書き演出用コンポーネント */
 .vertical-quote {
   writing-mode: vertical-rl;
   text-orientation: upright;
   font-family: var(--font-mincho);
   color: #fffdf8;
-  font-size: 1.25rem;
-  letter-spacing: 4px;
-  line-height: 1.8;
-  text-shadow: 0 0 10px rgba(0,0,0,0.9), 0 0 15px rgba(251,191,36,0.8);
-}
-
-/* 2000年代風見出し */
-.retro-title-bar {
-  background: linear-gradient(90deg, #0284c7 0%, #0369a1 50%, #0c4a6e 100%);
-  border-bottom: 2px solid var(--accent-gold);
-  color: var(--accent-gold);
-  font-family: var(--font-dot);
-  padding: 10px 16px;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
-  text-shadow: 1px 1px 3px #000;
-}
-
-.retro-title-bar-orange {
-  background: linear-gradient(90deg, #c2410c 0%, #ea580c 50%, #9a3412 100%);
-  border-bottom-color: var(--accent-gold);
-}
-
-/* クラシックテーブル */
-.classic-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 2px;
-  background-color: var(--border-sky);
-  margin-top: 12px;
-}
-
-.classic-table th {
-  background-color: var(--table-header);
-  color: var(--sky-blue);
-  font-family: var(--font-dot);
-  padding: 12px;
-  text-align: left;
-  border: 1px solid #0284c7;
-  font-size: 0.95rem;
-}
-
-.classic-table td {
-  background-color: rgba(3, 16, 36, 0.95);
-  padding: 12px;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  font-size: 0.92rem;
-}
-
-/* アクセスカウンター */
-.counter-box {
-  background: #000;
-  border: 2px solid var(--border-gold);
-  padding: 3px 8px;
-  display: inline-flex;
-  gap: 3px;
-  font-family: var(--font-dot);
-  color: #38bdf8;
-  letter-spacing: 2px;
   font-size: 1.3rem;
-  box-shadow: inset 0 0 8px #38bdf8;
+  letter-spacing: 6px;
+  line-height: 2.0;
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.9), 0 0 20px rgba(251, 191, 36, 0.8);
 }
 
-.counter-digit {
-  background: #0a0a0a;
-  padding: 0 5px;
-  border: 1px solid #333;
+/* スライダー */
+input[type="range"].modern-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: rgba(2, 132, 199, 0.3);
+  border-radius: 4px;
+  outline: none;
 }
 
-/* ボタン・タブ */
-.retro-btn {
-  background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
-  color: #fff;
-  border: 1px solid var(--accent-cyan);
-  padding: 10px 18px;
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 700;
+input[type="range"].modern-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+  border: 2px solid var(--accent-gold);
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 3px 3px 0 #000;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
+  box-shadow: 0 0 10px var(--accent-gold);
+  transition: transform 0.15s;
 }
 
-.retro-btn:hover {
-  background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
-  color: var(--accent-gold);
-  border-color: var(--accent-gold);
-  transform: translateY(-2px);
-  box-shadow: 4px 4px 0 #000;
-}
-
-.retro-btn-active {
-  background: linear-gradient(180deg, #ea580c 0%, #c2410c 100%);
-  color: #fff;
-  border-color: var(--accent-gold);
-  box-shadow: inset 2px 2px 4px #000;
+input[type="range"].modern-range::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
 }
 
 /* モーダル */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -275,36 +240,29 @@ body {
 }
 
 .modal-content {
-  background: #031024;
-  border: 3px solid var(--accent-gold);
-  box-shadow: 0 0 40px rgba(251, 191, 36, 0.4);
+  background: #081225;
+  border: 1px solid var(--accent-gold);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
   max-width: 950px;
   width: 100%;
   max-height: 92vh;
   overflow-y: auto;
-  border-radius: 6px;
-  padding: 28px;
+  border-radius: 14px;
+  padding: 32px;
   position: relative;
 }
 
-/* アニメーション */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
-
-@keyframes pulseGlow {
-  0%, 100% { text-shadow: 0 0 6px var(--accent-cyan); }
-  50% { text-shadow: 0 0 20px var(--accent-gold); }
-}
-.glow-text { animation: pulseGlow 3s infinite; }
+.animate-fade-in { animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
 
 .grid-2col { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
 .grid-3col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
 
 @media (max-width: 768px) {
-  .hero-bg-img { height: 260px; }
-  .hero-overlay { padding: 16px; }
+  .hero-bg-img { height: 280px; }
+  .hero-overlay { padding: 20px; }
   .vertical-quote { display: none; }
 }

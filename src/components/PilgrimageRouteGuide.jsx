@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigation, Footprints, Eye, Heart, Sparkles, CheckCircle } from 'lucide-react';
+import { Navigation, Footprints, Eye, Heart, Sparkles, MapPin } from 'lucide-react';
 import { PILGRIMAGE_SPOTS } from '../data/pilgrimageData';
 
 export default function PilgrimageRouteGuide() {
@@ -7,38 +7,30 @@ export default function PilgrimageRouteGuide() {
   const currentSpot = PILGRIMAGE_SPOTS[selectedPointIndex];
 
   return (
-    <div className="retro-box retro-box-gold animate-fade-in">
-      <div className="retro-title-bar retro-title-bar-orange">
-        <Navigation size={22} />
-        <span>【オタク感情直撃】 西御坊発 聖地回収ルート ＆ 名シーン精密再絵画比較</span>
+    <div className="modern-card modern-card-gold animate-fade-in">
+      <div className="modern-section-title" style={{ color: '#f97316' }}>
+        <Navigation size={24} />
+        <span>西御坊発 聖地回収ルート ＆ アニメカット実写対比ナビ</span>
       </div>
 
-      {/* 「わかる！！！」オタク感情バナー */}
-      <div style={{ background: 'rgba(234, 88, 12, 0.25)', border: '2px solid #ea580c', padding: '14px 18px', borderRadius: '4px', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <Sparkles color="#fbbf24" size={28} className="glow-text" />
-        <div>
-          <div className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.25rem', fontWeight: 'bold' }}>
-            「うわぁぁあ！このアニメのあのカットだ！！わかる！！！」
-          </div>
-          <div style={{ fontSize: '0.88rem', color: '#fed7aa', marginTop: '2px' }}>
-            似ているだけの適当な写真じゃない。アニメの対応カット・登場人物・小道具・画角を精密に再現した実写対比モジュールです。
-          </div>
-        </div>
-      </div>
+      <p style={{ fontSize: '0.95rem', color: '#cbd5e1', marginBottom: '20px' }}>
+        紀州鉄道「西御坊駅」から西川沿いに南下し、美浜町・煙樹ヶ浜へと向かう聖地回収ルートを案内。
+        アニメの対応カットと現地のリアル構図を精密に手元で対比・確認できます。
+      </p>
 
       {/* 回収ルートステップナビ */}
-      <div style={{ background: 'rgba(6, 20, 46, 0.95)', border: '2px solid #38bdf8', padding: '16px', borderRadius: '4px', marginBottom: '20px' }}>
-        <div className="font-dot" style={{ color: '#fbbf24', fontSize: '1.05rem', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Footprints color="#f97316" /> 西御坊駅発 聖地回収ステップ (全5ポイント / 総距離 約3.5km)
+      <div style={{ background: 'rgba(2, 132, 199, 0.15)', border: '1px solid rgba(56, 189, 248, 0.3)', padding: '16px', borderRadius: '10px', marginBottom: '24px' }}>
+        <div style={{ color: '#fbbf24', fontSize: '1.05rem', fontWeight: '700', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Footprints color="#f97316" size={20} /> 西御坊駅発 聖地回収ステップ (全5ポイント / 総距離 約3.5km)
         </div>
 
-        <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '8px' }}>
+        <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '6px' }}>
           {PILGRIMAGE_SPOTS.slice(0, 5).map((spot, idx) => (
             <button
               key={spot.id}
               onClick={() => setSelectedPointIndex(idx)}
-              className={`retro-btn ${selectedPointIndex === idx ? 'retro-btn-active' : ''}`}
-              style={{ padding: '8px 14px', fontSize: '0.88rem', whiteSpace: 'nowrap', flexShrink: 0 }}
+              className={`modern-btn ${selectedPointIndex === idx ? 'modern-btn-active' : ''}`}
+              style={{ padding: '8px 16px', fontSize: '0.88rem', whiteSpace: 'nowrap', flexShrink: 0 }}
             >
               Pt.{idx + 1}: {spot.name.split('・')[0].split(' ')[0]}
             </button>
@@ -47,54 +39,52 @@ export default function PilgrimageRouteGuide() {
       </div>
 
       {/* 選択中の聖地・「わかる！！！」オタク感情対比カード */}
-      <div style={{ background: 'rgba(3, 16, 36, 0.95)', border: '2px solid #fbbf24', borderRadius: '6px', overflow: 'hidden', padding: '20px', marginBottom: '20px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '14px', borderBottom: '1px dashed #1d5f8a', paddingBottom: '10px' }}>
+      <div className="modern-card" style={{ background: 'rgba(8, 18, 37, 0.9)', border: '1px solid #fbbf24', padding: '24px', marginBottom: '0' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '12px' }}>
           <div>
-            <span className="font-dot" style={{ background: '#ea580c', color: '#fff', padding: '3px 10px', borderRadius: '2px', fontSize: '0.85rem', marginRight: '10px' }}>
+            <span style={{ background: '#ea580c', color: '#fff', padding: '4px 12px', borderRadius: '14px', fontSize: '0.85rem', fontWeight: '600', marginRight: '12px' }}>
               回収Pt. {selectedPointIndex + 1} / 5
             </span>
-            <span className="font-dot" style={{ color: '#38bdf8', fontSize: '0.95rem' }}>
-              アニメ対応話数・カット: <strong style={{ color: '#fbbf24' }}>{currentSpot.episodeTime}</strong>
+            <span style={{ color: '#38bdf8', fontSize: '0.95rem' }}>
+              アニメ対応カット: <strong style={{ color: '#fbbf24' }}>{currentSpot.episodeTime}</strong>
             </span>
           </div>
-          <div style={{ fontSize: '0.85rem', color: '#cbd5e1' }}>
-            📍 {currentSpot.location}
+          <div style={{ fontSize: '0.9rem', color: '#cbd5e1', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <MapPin size={16} color="#fbbf24" /> {currentSpot.location}
           </div>
         </div>
 
-        <h3 className="font-mincho glow-text" style={{ color: '#fbbf24', fontSize: '1.7rem', marginBottom: '12px' }}>
+        <h3 className="font-mincho" style={{ color: '#fbbf24', fontSize: '1.8rem', marginBottom: '14px' }}>
           {currentSpot.name}
         </h3>
 
-        {/* オタク共感キャプションバナー */}
-        <div style={{ background: 'rgba(251, 191, 36, 0.15)', borderLeft: '4px solid #fbbf24', padding: '12px 16px', marginBottom: '16px', color: '#fffdf8', fontFamily: 'var(--font-mincho)', fontSize: '1.05rem', lineHeight: '1.7' }}>
-          <Heart color="#ea580c" size={18} style={{ display: 'inline', marginRight: '6px' }} />
-          <strong>オタクの感情共感メモ:</strong> {currentSpot.otakuCaption}
+        {/* 共感キャプションバナー */}
+        <div style={{ background: 'rgba(251, 191, 36, 0.12)', borderLeft: '4px solid #fbbf24', padding: '14px 18px', borderRadius: '0 8px 8px 0', marginBottom: '20px', color: '#ffffff', fontFamily: 'var(--font-mincho)', fontSize: '1.1rem', lineHeight: '1.7' }}>
+          <Heart color="#ea580c" size={20} style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }} />
+          <strong>共感メモ:</strong> {currentSpot.otakuCaption}
         </div>
 
-        {/* 現場写真 ＋ アニメ作中画面 PiP (Picture-in-Picture) インセットオーバーレイ */}
-        <div style={{ position: 'relative', width: '100%', borderRadius: '4px', overflow: 'hidden', border: '2px solid #38bdf8', marginBottom: '16px' }}>
-          {/* メイン: 現地のリアル現場写真 */}
+        {/* 現場写真 ＋ アニメ作中画面 PiP インセットオーバーレイ */}
+        <div style={{ position: 'relative', width: '100%', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--accent-cyan)', marginBottom: '20px', boxShadow: '0 15px 30px rgba(0,0,0,0.5)' }}>
           <img 
             src={currentSpot.imageUrl} 
             alt="現場写真" 
-            style={{ width: '100%', height: '400px', objectFit: 'cover' }}
+            style={{ width: '100%', height: '420px', objectFit: 'cover' }}
           />
 
-          <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.85)', color: '#38bdf8', padding: '4px 12px', fontSize: '0.85rem', fontFamily: 'var(--font-dot)', border: '1px solid #38bdf8' }}>
-            【リアル現場写真】
+          <div style={{ position: 'absolute', top: '16px', left: '16px', background: 'rgba(0,0,0,0.85)', color: '#38bdf8', padding: '6px 14px', borderRadius: '6px', fontSize: '0.85rem', border: '1px solid #38bdf8', backdropFilter: 'blur(4px)' }}>
+            リアル現場撮影アングル
           </div>
 
-          {/* 右下インセット小窓: 再絵画されたアニメ作中画面 (YouTube検証スタイル) */}
           <div style={{ 
             position: 'absolute', 
-            bottom: '16px', 
-            right: '16px', 
+            bottom: '20px', 
+            right: '20px', 
             width: '340px', 
             height: '200px', 
-            border: '3px solid #fbbf24', 
-            borderRadius: '4px', 
-            boxShadow: '0 0 25px rgba(0,0,0,0.95)', 
+            border: '2px solid #fbbf24', 
+            borderRadius: '8px', 
+            boxShadow: '0 10px 30px rgba(0,0,0,0.9)', 
             overflow: 'hidden',
             background: '#000'
           }}>
@@ -103,18 +93,18 @@ export default function PilgrimageRouteGuide() {
               alt="アニメ作中画面再絵画" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
-            <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', background: 'rgba(0,0,0,0.9)', color: '#fbbf24', padding: '3px 6px', fontSize: '0.8rem', textAlign: 'center', fontFamily: 'var(--font-dot)' }}>
-              ▲ 精密再絵画カット ({currentSpot.episodeTime})
+            <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', background: 'rgba(0,0,0,0.85)', color: '#fbbf24', padding: '4px 8px', fontSize: '0.8rem', textAlign: 'center' }}>
+              アニメ作中カット ({currentSpot.episodeTime})
             </div>
           </div>
         </div>
 
-        {/* 厳密な現場検証 ＆ レイアウト解説 */}
-        <div className="retro-box-light" style={{ padding: '18px', lineHeight: '1.8', whiteSpace: 'pre-line' }}>
-          <h4 className="font-dot" style={{ color: '#1e293b', borderBottom: '2px solid #0b2545', paddingBottom: '6px', marginBottom: '12px', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Eye size={20} color="#ea580c" /> アニメ画角・小道具・風景の厳密一致検証
+        {/* 現場検証解説 */}
+        <div className="modern-card-light" style={{ padding: '20px', lineHeight: '1.8', whiteSpace: 'pre-line' }}>
+          <h4 style={{ color: '#0f172a', borderBottom: '2px solid #0284c7', paddingBottom: '6px', marginBottom: '14px', fontSize: '1.15rem', display: 'flex', alignItems: 'center', gap: '8px', fontWait: '700' }}>
+            <Eye size={20} color="#ea580c" /> アニメ画角・景色の厳密対比検証
           </h4>
-          <div style={{ fontSize: '0.95rem' }}>
+          <div style={{ fontSize: '0.98rem' }}>
             {currentSpot.details}
           </div>
         </div>
