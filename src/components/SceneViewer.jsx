@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Camera, MapPin, X, BookOpen, Heart } from 'lucide-react';
+import { Camera, MapPin, X, BookOpen } from 'lucide-react';
 import { PILGRIMAGE_SPOTS } from '../data/pilgrimageData';
 
 export default function SceneViewer() {
@@ -64,7 +64,7 @@ export default function SceneViewer() {
               <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
                 <img 
                   src={spot.animeCompareImg} 
-                  alt="アニメ名シーン再絵画" 
+                  alt="アニメ名シーン" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
                 <span style={{ position: 'absolute', bottom: '8px', left: '8px', background: 'rgba(0,0,0,0.85)', color: '#fbbf24', fontSize: '0.78rem', padding: '3px 8px', borderRadius: '4px' }}>
@@ -101,7 +101,7 @@ export default function SceneViewer() {
               </h3>
               
               <div style={{ background: 'rgba(251, 191, 36, 0.1)', padding: '8px 12px', borderRadius: '6px', borderLeft: '3px solid #fbbf24', fontSize: '0.85rem', color: '#fffdf8', marginBottom: '12px' }}>
-                {spot.otakuCaption}
+                {spot.sceneContext}
               </div>
 
               <div style={{ textAlign: 'right' }}>
@@ -137,7 +137,7 @@ export default function SceneViewer() {
             {/* 比較画像拡大 */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
               <div>
-                <img src={selectedSpot.animeCompareImg} alt="名シーン再絵画" style={{ width: '100%', height: '260px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #fbbf24' }} />
+                <img src={selectedSpot.animeCompareImg} alt="名シーン" style={{ width: '100%', height: '260px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #fbbf24' }} />
                 <div style={{ textAlign: 'center', color: '#fbbf24', fontSize: '0.88rem', marginTop: '8px' }}>
                   アニメ名シーンカット ({selectedSpot.episodeTime})
                 </div>
@@ -153,7 +153,7 @@ export default function SceneViewer() {
             {/* キャプション ＆ 名言 */}
             <div style={{ background: 'rgba(234, 88, 12, 0.15)', border: '1px solid #ea580c', padding: '16px', marginBottom: '20px', borderRadius: '8px' }}>
               <div style={{ color: '#fbbf24', fontFamily: 'var(--font-mincho)', fontSize: '1.2rem', marginBottom: '6px', fontWeight: 'bold' }}>
-                {selectedSpot.otakuCaption}
+                {selectedSpot.sceneContext}
               </div>
               <div style={{ color: '#fffdf8', fontStyle: 'italic', fontSize: '0.98rem' }}>
                 作中名言: {selectedSpot.famousQuote}
@@ -163,7 +163,7 @@ export default function SceneViewer() {
             {/* 考察本文 */}
             <div className="modern-card-light" style={{ padding: '20px', lineHeight: '1.8', whiteSpace: 'pre-line' }}>
               <h4 style={{ color: '#0f172a', borderBottom: '2px solid #0284c7', paddingBottom: '6px', marginBottom: '14px', fontSize: '1.15rem' }}>
-                AIR 聖地とアニメ作中画角の厳密対比検証
+                AIR 聖地とアニメ作中画角の整合性検証
               </h4>
               <div style={{ fontSize: '0.98rem' }}>
                 {selectedSpot.details}
@@ -178,14 +178,6 @@ export default function SceneViewer() {
           </div>
         </div>
       )}
-
-      <style>{`
-        .spot-card:hover {
-          transform: translateY(-4px);
-          border-color: #fbbf24 !important;
-          box-shadow: 0 12px 25px rgba(251, 191, 36, 0.25);
-        }
-      `}</style>
     </div>
   );
 }

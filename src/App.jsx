@@ -53,9 +53,9 @@ export default function App() {
           <button
             onClick={() => setActiveTab('link')}
             className={`modern-btn ${activeTab === 'link' ? 'modern-btn-active' : ''}`}
-            style={{ padding: '12px 22px', fontSize: '1.05rem', background: activeTab === 'link' ? 'linear-gradient(180deg, #ea580c 0%, #9a3412 100%)' : 'linear-gradient(180deg, #9a3412 0%, #7c2d12 100%)', borderColor: '#fbbf24' }}
+            style={{ padding: '12px 22px', fontSize: '1rem', background: activeTab === 'link' ? 'linear-gradient(180deg, #ea580c 0%, #9a3412 100%)' : 'linear-gradient(180deg, #9a3412 0%, #7c2d12 100%)', borderColor: '#fbbf24' }}
           >
-            <Layers size={20} color="#fbbf24" /> 【あーーあったわ！！】 現実 ＆ アニメ 100% 透過リンク
+            <Layers size={18} color="#fbbf24" /> 現実 ＆ アニメ 透過オーバーレイ
           </button>
 
           <button
@@ -71,7 +71,7 @@ export default function App() {
             className={`modern-btn ${activeTab === 'encyclopedia' ? 'modern-btn-active' : ''}`}
             style={{ padding: '12px 22px', fontSize: '1rem', background: activeTab === 'encyclopedia' ? 'linear-gradient(180deg, #0284c7 0%, #0369a1 100%)' : 'linear-gradient(180deg, #0c4a6e 0%, #0369a1 100%)', borderColor: '#fbbf24' }}
           >
-            <BookOpen size={18} color="#fbbf24" /> 【深淵考察】 AIRトリビア ＆ 京アニロケハン秘話
+            <BookOpen size={18} color="#fbbf24" /> AIRトリビア ＆ 京アニロケハン秘話
           </button>
 
           <button
@@ -87,7 +87,7 @@ export default function App() {
             className={`modern-btn ${activeTab === 'essay' ? 'modern-btn-active' : ''}`}
             style={{ padding: '12px 22px', fontSize: '1rem' }}
           >
-            <Flame size={18} color="#fbbf24" /> 当時オタクの熱狂長文考察
+            <Flame size={18} color="#fbbf24" /> AIR作品解析 ＆ 長文考察
           </button>
 
           <button
@@ -136,7 +136,7 @@ export default function App() {
             </span>
           </div>
           <p style={{ marginBottom: '8px', color: '#38bdf8', fontSize: '0.95rem' }}>
-            AIR 聖地巡礼コンプリートガイド ＆ 現実 ＆ アニメ 100% 透過リンクアーキテクチャ
+            AIR 聖地巡礼コンプリートガイド ＆ 現実 ＆ アニメ 透過オーバーレイポータル
           </p>
           <p style={{ fontSize: '0.82rem', color: '#64748b' }}>
             Presented for All AIR Fans | Dedicated to Misuzu Kamio & Yukito Kunisaki | Key / VisualArt's

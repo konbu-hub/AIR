@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigation, Footprints, Eye, Heart, Sparkles, MapPin } from 'lucide-react';
+import { Navigation, Footprints, Eye, Sparkles, MapPin } from 'lucide-react';
 import { PILGRIMAGE_SPOTS } from '../data/pilgrimageData';
 
 export default function PilgrimageRouteGuide() {
@@ -8,13 +8,13 @@ export default function PilgrimageRouteGuide() {
 
   return (
     <div className="modern-card modern-card-gold animate-fade-in">
-      <div className="modern-section-title" style={{ color: '#f97316' }}>
+      <div className="modern-section-title" style={{ color: '#ea580c' }}>
         <Navigation size={24} />
         <span>西御坊発 聖地回収ルート ＆ アニメカット実写対比ナビ</span>
       </div>
 
       <p style={{ fontSize: '0.95rem', color: '#cbd5e1', marginBottom: '20px' }}>
-        紀州鉄道「西御坊駅」から西川沿いに南下し、美浜町・煙樹ヶ浜へと向かう聖地回収ルートを案内。
+        紀州鉄道「西御坊駅」から西川沿なに南下し、美浜町・煙樹ヶ浜へと向かう聖地回収ルートを案内。
         アニメの対応カットと現地のリアル構図を精密に手元で対比・確認できます。
       </p>
 
@@ -38,7 +38,7 @@ export default function PilgrimageRouteGuide() {
         </div>
       </div>
 
-      {/* 選択中の聖地・「わかる！！！」オタク感情対比カード */}
+      {/* 選択中の聖地・対比カード */}
       <div className="modern-card" style={{ background: 'rgba(8, 18, 37, 0.9)', border: '1px solid #fbbf24', padding: '24px', marginBottom: '0' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '12px' }}>
           <div>
@@ -58,10 +58,10 @@ export default function PilgrimageRouteGuide() {
           {currentSpot.name}
         </h3>
 
-        {/* 共感キャプションバナー */}
-        <div style={{ background: 'rgba(251, 191, 36, 0.12)', borderLeft: '4px solid #fbbf24', padding: '14px 18px', borderRadius: '0 8px 8px 0', marginBottom: '20px', color: '#ffffff', fontFamily: 'var(--font-mincho)', fontSize: '1.1rem', lineHeight: '1.7' }}>
-          <Heart color="#ea580c" size={20} style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }} />
-          <strong>共感メモ:</strong> {currentSpot.otakuCaption}
+        {/* シーン文脈バナー */}
+        <div style={{ background: 'rgba(251, 191, 36, 0.12)', borderLeft: '4px solid #fbbf24', padding: '14px 18px', borderRadius: '0 8px 8px 0', marginBottom: '20px', color: '#ffffff', fontFamily: 'var(--font-mincho)', fontSize: '1.05rem', lineHeight: '1.7' }}>
+          <Sparkles color="#ea580c" size={20} style={{ display: 'inline', marginRight: '8px', verticalAlign: 'middle' }} />
+          <strong>【情景と文脈】:</strong> {currentSpot.sceneContext}
         </div>
 
         {/* 現場写真 ＋ アニメ作中画面 PiP インセットオーバーレイ */}
@@ -90,7 +90,7 @@ export default function PilgrimageRouteGuide() {
           }}>
             <img 
               src={currentSpot.animeCompareImg} 
-              alt="アニメ作中画面再絵画" 
+              alt="アニメ作中カット" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
             <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', background: 'rgba(0,0,0,0.85)', color: '#fbbf24', padding: '4px 8px', fontSize: '0.8rem', textAlign: 'center' }}>
@@ -101,7 +101,7 @@ export default function PilgrimageRouteGuide() {
 
         {/* 現場検証解説 */}
         <div className="modern-card-light" style={{ padding: '20px', lineHeight: '1.8', whiteSpace: 'pre-line' }}>
-          <h4 style={{ color: '#0f172a', borderBottom: '2px solid #0284c7', paddingBottom: '6px', marginBottom: '14px', fontSize: '1.15rem', display: 'flex', alignItems: 'center', gap: '8px', fontWait: '700' }}>
+          <h4 style={{ color: '#0f172a', borderBottom: '2px solid #0284c7', paddingBottom: '6px', marginBottom: '14px', fontSize: '1.15rem', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '700' }}>
             <Eye size={20} color="#ea580c" /> アニメ画角・景色の厳密対比検証
           </h4>
           <div style={{ fontSize: '0.98rem' }}>
