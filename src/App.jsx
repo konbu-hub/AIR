@@ -4,10 +4,10 @@ import SacredSpotComparisonViewer from './components/SacredSpotComparisonViewer'
 import AnimeRealLinkViewer from './components/AnimeRealLinkViewer';
 import AirDeepEncyclopedia from './components/AirDeepEncyclopedia';
 import SpotMapList from './components/SpotMapList';
-import { Camera, Layers, BookOpen, MapPin, Feather } from 'lucide-react';
+import { Camera, Layers, BookOpen, MapPin } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('gallery'); // デフォルトを「聖地全対比 ＆ Google Maps アサーション」に一元化！
+  const [activeTab, setActiveTab] = useState('gallery');
 
   const [feathers, setFeathers] = useState([]);
 
@@ -41,39 +41,39 @@ export default function App() {
       ))}
 
       <div className="main-container">
-        {/* AIR 澄み渡る真夏の青空 Header */}
+        {/* nudot.com.tw スタイルのディープネイビー Header */}
         <Header />
 
-        {/* 洗練された極上ナビゲーション */}
-        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '28px', justifyContent: 'center' }}>
+        {/* 極上の最先端ナビゲーション */}
+        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '32px', justifyContent: 'center' }}>
           <button
             onClick={() => setActiveTab('gallery')}
-            className={`bright-btn ${activeTab === 'gallery' ? 'bright-btn-active' : ''}`}
-            style={{ padding: '12px 24px', fontSize: '1.05rem' }}
+            className={`nudot-btn ${activeTab === 'gallery' ? 'nudot-btn-active' : ''}`}
+            style={{ padding: '12px 26px', fontSize: '1rem' }}
           >
-            <Camera size={20} /> 全国 AIR 聖地一覧 ＆ 作中対比 (Google Maps)
+            <Camera size={20} /> 全国のAIR聖地 ＆ 作中対比 (Google Maps)
           </button>
 
           <button
             onClick={() => setActiveTab('link')}
-            className={`bright-btn ${activeTab === 'link' ? 'bright-btn-active' : ''}`}
-            style={{ padding: '12px 24px', fontSize: '1.05rem' }}
+            className={`nudot-btn ${activeTab === 'link' ? 'nudot-btn-active' : ''}`}
+            style={{ padding: '12px 26px', fontSize: '1rem' }}
           >
             <Layers size={20} /> 現実 ＆ アニメ 透過オーバーレイ
           </button>
 
           <button
             onClick={() => setActiveTab('encyclopedia')}
-            className={`bright-btn ${activeTab === 'encyclopedia' ? 'bright-btn-active' : ''}`}
-            style={{ padding: '12px 24px', fontSize: '1.05rem' }}
+            className={`nudot-btn ${activeTab === 'encyclopedia' ? 'nudot-btn-active' : ''}`}
+            style={{ padding: '12px 26px', fontSize: '1rem' }}
           >
             <BookOpen size={20} /> AIR深遠トリビア ＆ ロケハン秘話
           </button>
 
           <button
             onClick={() => setActiveTab('map')}
-            className={`bright-btn ${activeTab === 'map' ? 'bright-btn-active' : ''}`}
-            style={{ padding: '12px 24px', fontSize: '1.05rem' }}
+            className={`nudot-btn ${activeTab === 'map' ? 'nudot-btn-active' : ''}`}
+            style={{ padding: '12px 26px', fontSize: '1rem' }}
           >
             <MapPin size={20} /> Google Maps チェックリスト
           </button>
@@ -87,10 +87,10 @@ export default function App() {
           {activeTab === 'map' && <SpotMapList />}
         </main>
 
-        {/* 静かで洗練された極小ミニマルフッター */}
-        <footer style={{ textAlign: 'center', marginTop: '48px', paddingBottom: '32px', fontSize: '0.8rem', color: '#64748b' }}>
+        {/* nudot.com.tw スタイルの静かで洗練されたフッター */}
+        <footer style={{ textAlign: 'center', marginTop: '56px', paddingBottom: '36px', fontSize: '0.8rem', color: '#64748b', letterSpacing: '1px' }}>
           <p>
-            AIR Pilgrimage Portal & Location Cross-Fade System | © Key / VisualArt's
+            AIR PILGRIMAGE PORTAL & LOCATION CROSS-FADE SYSTEM | © Key / VisualArt's
           </p>
         </footer>
       </div>

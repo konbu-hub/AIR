@@ -26,23 +26,23 @@ export default function WeatherWidget() {
   }, []);
 
   return (
-    <div className="bright-card" style={{ padding: '16px 24px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <div style={{ background: '#e0f2fe', padding: '10px', borderRadius: '50%' }}>
-          <Sun color="#0284c7" size={28} />
+    <div className="nudot-card" style={{ padding: '18px 26px', marginBottom: '32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+        <div style={{ background: 'rgba(56, 189, 248, 0.15)', padding: '12px', borderRadius: '50%', border: '1px solid rgba(56, 189, 248, 0.3)' }}>
+          <Sun color="#fbbf24" size={28} />
         </div>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px' }}>
-            <MapPin size={16} color="#0284c7" />
-            <span style={{ color: '#0284c7', fontWeight: '700', fontSize: '0.95rem' }}>
-              聖地・和歌山県美浜町の現在のコンディション:
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+            <MapPin size={16} color="#38bdf8" />
+            <span style={{ color: '#38bdf8', fontWeight: '700', fontSize: '0.95rem', letterSpacing: '0.5px' }}>
+              聖地・和歌山県美浜町 リアルタイムコンディション:
             </span>
           </div>
-          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', fontSize: '0.92rem', color: '#334155' }}>
-            <span>天気: <strong style={{ color: '#0284c7' }}>{weather.weatherText}</strong></span>
-            <span>気温: <strong style={{ color: '#ea580c' }}>{weather.temperature}℃</strong></span>
-            <span>風速: <strong style={{ color: '#475569' }}>{weather.windSpeed} m/s</strong></span>
-            <span>日の入り (夕焼けタイム): <strong style={{ color: '#d97706' }}>{weather.sunsetTime}</strong></span>
+          <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', fontSize: '0.92rem', color: '#f8fafc' }}>
+            <span>天気: <strong style={{ color: '#fbbf24' }}>{weather.weatherText}</strong></span>
+            <span>気温: <strong style={{ color: '#38bdf8' }}>{weather.temperature}℃</strong></span>
+            <span>風速: <strong style={{ color: '#cbd5e1' }}>{weather.windSpeed} m/s</strong></span>
+            <span>日の入り (夕焼けタイム): <strong style={{ color: '#f97316' }}>{weather.sunsetTime}</strong></span>
           </div>
         </div>
       </div>
