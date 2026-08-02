@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { MapPin, ExternalLink } from 'lucide-react';
+import { MapPin, ExternalLink, Clock, Train, Camera, Star } from 'lucide-react';
 
 /**
  * SpotSection — 1つの聖地スポットをフルスクリーンでシネマティックに表示するセクション。
- * 背景に現実の写真をフルブリードで配置し、左カラムにテキスト情報、右カラムにアニメ作中カットを表示。
- * 任天堂 / nudot.com.tw のような世界観に引き込むフルスクリーンスクロール体験を実現する。
+ * 背景にリアル写真をフルブリード配置、左カラムにテキスト＆情報、右カラムにアニメ作中カットを表示。
+ * 情報量を大幅に増強（アクセス、ベスト訪問時間、巡礼Tips）しつつデザインを崩さない。
  */
 export default function SpotSection({ spot, index }) {
   const sectionRef = useRef(null);
@@ -15,12 +15,12 @@ export default function SpotSection({ spot, index }) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.querySelectorAll('.reveal').forEach((el, i) => {
-              setTimeout(() => el.classList.add('visible'), i * 120);
+              setTimeout(() => el.classList.add('visible'), i * 100);
             });
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.12 }
     );
 
     if (sectionRef.current) {
@@ -34,7 +34,7 @@ export default function SpotSection({ spot, index }) {
 
   return (
     <section className="spot" ref={sectionRef}>
-      {/* 背景 = 現実の写真フルブリード */}
+      {/* 背景 = リアル写真フルブリード */}
       <div className="spot__bg">
         <img
           src={spot.imageUrl}
@@ -73,10 +73,48 @@ export default function SpotSection({ spot, index }) {
             </div>
           )}
 
+          {/* そのシーンの文脈・意味 */}
+          {spot.sceneContext && (
+            <div className="spot__context-block reveal">
+              <div className="spot__context-text">{spot.sceneContext}</div>
+            </div>
+          )}
+
           {/* 現実はどんな感じか */}
           <div className="spot__reality-block reveal">
             <div className="spot__reality-label">現地はどんな場所か</div>
             <div className="spot__reality-text">{spot.details}</div>
+          </div>
+
+          {/* 巡礼情報パネル */}
+          <div className="spot__info-grid reveal">
+            {spot.access && (
+              <div className="spot__info-item">
+                <Train size={14} className="spot__info-icon" />
+                <div>
+                  <div className="spot__info-label">アクセス</div>
+                  <div className="spot__info-text">{spot.access}</div>
+                </div>
+              </div>
+            )}
+            {spot.bestTime && (
+              <div className="spot__info-item">
+                <Clock size={14} className="spot__info-icon" />
+                <div>
+                  <div className="spot__info-label">ベスト訪問タイミング</div>
+                  <div className="spot__info-text">{spot.bestTime}</div>
+                </div>
+              </div>
+            )}
+            {spot.tips && (
+              <div className="spot__info-item">
+                <Star size={14} className="spot__info-icon" />
+                <div>
+                  <div className="spot__info-label">巡礼Tips</div>
+                  <div className="spot__info-text">{spot.tips}</div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Google Maps ボタン */}
@@ -101,7 +139,7 @@ export default function SpotSection({ spot, index }) {
               loading="lazy"
             />
             <div className="spot__anime-caption">
-              アニメ・ゲーム 作中カット — {spot.episodeTime}
+              作中カット — {spot.episodeTime}
             </div>
           </div>
         </div>
