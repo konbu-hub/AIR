@@ -1,229 +1,551 @@
 @charset "UTF-8";
 
-/* NUDOT.com.tw Inspired Ultra-Premium Deep Navy & High-Tech Design System */
+/* ========================== */
+/* AIR - 1000th Summer        */
+/* Cinematic Scroll Experience */
+/* ========================== */
+
 :root {
-  --bg-deep-navy: #050b18;
-  --bg-navy-gradient: radial-gradient(circle at 50% 0%, #0c1e3e 0%, #060b18 70%, #02050c 100%);
-  --glass-navy: rgba(10, 20, 47, 0.72);
-  --glass-navy-border: rgba(56, 189, 248, 0.2);
-  --glass-navy-gold: rgba(251, 191, 36, 0.3);
-  --glass-navy-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.6);
-  --sky-luminous: #38bdf8;
-  --gold-luminous: #fbbf24;
-  --sunset-coral: #f97316;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --font-mincho: 'Shippori Mincho', 'Sawarabi Mincho', serif;
-  --font-sans: 'M PLUS Rounded 1c', -apple-system, BlinkMacSystemFont, sans-serif;
+  --navy-deep: #060d1e;
+  --navy-mid: #0b1a36;
+  --navy-light: #112240;
+  --sky-glow: #38bdf8;
+  --sky-pale: #7dd3fc;
+  --gold-warm: #fbbf24;
+  --gold-dim: rgba(251, 191, 36, 0.6);
+  --sunset-warm: #f97316;
+  --white-pure: #ffffff;
+  --white-soft: #e2e8f0;
+  --text-main: #f1f5f9;
+  --text-sub: #94a3b8;
+  --text-dim: #64748b;
+  --font-mincho: 'Shippori Mincho', serif;
+  --font-ui: 'M PLUS Rounded 1c', sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
 }
 
 body {
-  background-color: var(--bg-deep-navy);
-  background: var(--bg-navy-gradient);
-  background-attachment: fixed;
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  line-height: 1.75;
-  min-height: 100vh;
-  position: relative;
+  background: var(--navy-deep);
+  color: var(--text-main);
+  font-family: var(--font-ui);
+  line-height: 1.8;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* 舞い散る美しい白い羽根アニメーション */
-@keyframes featherFall {
+::selection {
+  background: rgba(56, 189, 248, 0.35);
+  color: #fff;
+}
+
+/* ===========================
+   白い羽根 (SVG, NOT emoji)
+   =========================== */
+@keyframes featherDrift {
   0% {
-    transform: translateY(-40px) rotate(0deg) translateX(0);
     opacity: 0;
+    transform: translateY(-60px) translateX(0) rotate(0deg) scale(var(--f-scale, 1));
   }
-  15% { opacity: 0.75; }
-  85% { opacity: 0.75; }
+  8% { opacity: 0.9; }
+  50% {
+    transform: translateY(45vh) translateX(calc(var(--f-drift, 40px))) rotate(180deg) scale(var(--f-scale, 1));
+  }
+  92% { opacity: 0.9; }
   100% {
-    transform: translateY(105vh) rotate(360deg) translateX(120px);
     opacity: 0;
+    transform: translateY(102vh) translateX(calc(var(--f-drift, 40px) * 2.5)) rotate(400deg) scale(var(--f-scale, 1));
   }
 }
 
-.feather-particle {
+.feather {
   position: fixed;
-  top: -20px;
+  top: -40px;
   pointer-events: none;
-  z-index: 1;
-  animation: featherFall linear infinite;
-  user-select: none;
-  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));
+  z-index: 50;
+  animation: featherDrift linear infinite;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
 }
 
-.font-mincho { font-family: var(--font-mincho); }
+/* ===========================
+   フルスクリーン・ヒーロー
+   =========================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  scroll-snap-align: start;
+}
 
-/* メインコンテナ */
-.main-container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 32px 20px;
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.65) saturate(1.15);
+  transition: transform 18s ease;
+}
+
+.hero:hover .hero__bg img {
+  transform: scale(1.04);
+}
+
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(6, 13, 30, 0.3) 0%, transparent 35%, transparent 55%, rgba(6, 13, 30, 0.95) 100%),
+    radial-gradient(ellipse at 50% 100%, rgba(6, 13, 30, 0.6) 0%, transparent 70%);
+  z-index: 1;
+}
+
+.hero__content {
   position: relative;
   z-index: 2;
+  padding: 0 clamp(24px, 5vw, 80px) clamp(48px, 8vh, 100px);
+  max-width: 900px;
 }
 
-/* nudot.com.tw クラスの最先端ガラスモルフィズムカード */
-.nudot-card {
-  background: var(--glass-navy);
-  border: 1px solid var(--glass-navy-border);
-  box-shadow: var(--glass-navy-shadow);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 18px;
-  padding: 28px;
-  margin-bottom: 28px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nudot-card:hover {
-  border-color: rgba(56, 189, 248, 0.45);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.15);
-  transform: translateY(-4px);
-}
-
-.nudot-card-gold {
-  border-color: var(--glass-navy-gold);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(251, 191, 36, 0.1);
-}
-
-/* 最先端タイポグラフィセクションタイトル */
-.nudot-section-title {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: var(--sky-luminous);
-  font-family: var(--font-mincho);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.18);
-  padding-bottom: 14px;
-  margin-bottom: 24px;
-  letter-spacing: 1.5px;
-}
-
-/* nudot.com.tw スタイルのボタン */
-.nudot-btn {
-  background: rgba(10, 25, 55, 0.6);
-  color: #f8fafc;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  padding: 10px 22px;
-  border-radius: 30px;
-  font-size: 0.92rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.hero__badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  backdrop-filter: blur(8px);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--sky-glow);
+  padding: 6px 18px;
+  border-radius: 28px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  backdrop-filter: blur(10px);
+  margin-bottom: 18px;
+}
+
+.hero__title {
+  font-family: var(--font-mincho);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  text-shadow: 0 8px 30px rgba(0,0,0,0.7);
+}
+
+.hero__subtitle {
+  font-family: var(--font-mincho);
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  color: var(--gold-warm);
+  letter-spacing: 0.04em;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+  margin-bottom: 28px;
+}
+
+.hero__scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-sub);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  animation: hintPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(4px); }
+}
+
+/* ===========================
+   セクション共通
+   =========================== */
+.section {
+  position: relative;
+  padding: clamp(60px, 10vh, 120px) clamp(20px, 5vw, 80px);
+  scroll-snap-align: start;
+}
+
+.section__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--sky-glow);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section__heading {
+  font-family: var(--font-mincho);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+
+.section__desc {
+  color: var(--text-sub);
+  font-size: 1rem;
+  max-width: 680px;
+  line-height: 1.9;
+  margin-bottom: 48px;
+}
+
+/* ===========================
+   聖地スポット: シネマティックスクロール
+   各スポットがフルワイドで展開
+   =========================== */
+.spot {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+/* 背景のフル写真（リアル写真） */
+.spot__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.spot__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55) saturate(1.1);
+}
+
+.spot__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(6, 13, 30, 0.92) 0%, rgba(6, 13, 30, 0.7) 45%, transparent 100%);
+}
+
+@media (max-width: 768px) {
+  .spot__overlay {
+    background: linear-gradient(180deg, rgba(6, 13, 30, 0.5) 0%, rgba(6, 13, 30, 0.92) 50%);
+  }
+}
+
+.spot__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 80px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .spot__inner { grid-template-columns: 1fr; }
+}
+
+/* 左カラム：テキスト情報 */
+.spot__text { }
+
+.spot__area-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--sky-glow);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.spot__episode {
+  color: var(--gold-warm);
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: 10px;
   letter-spacing: 1px;
 }
 
-.nudot-btn:hover {
-  background: rgba(56, 189, 248, 0.2);
-  color: #ffffff;
-  border-color: var(--sky-luminous);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(56, 189, 248, 0.3);
+.spot__name {
+  font-family: var(--font-mincho);
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
 }
 
-.nudot-btn-active {
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-  color: #ffffff;
-  border-color: var(--sky-luminous);
-  box-shadow: 0 8px 25px rgba(2, 132, 199, 0.45);
-}
-
-.nudot-btn-gold {
-  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
-  color: #ffffff;
-  border-color: var(--gold-luminous);
-  box-shadow: 0 8px 25px rgba(234, 88, 12, 0.45);
-}
-.nudot-btn-gold:hover {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-  color: #ffffff;
-  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.55);
-}
-
-/* nudot.com.tw ヒーローセクション (ディープネイビー ✕ 最先端) */
-.hero-banner-nudot {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
-  margin-bottom: 32px;
-  background: #020617;
-}
-
-.hero-bg-img-nudot {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  opacity: 0.82;
-  filter: saturate(1.2) contrast(1.05);
-  transition: transform 12s ease;
-}
-
-.hero-banner-nudot:hover .hero-bg-img-nudot {
-  transform: scale(1.03);
-}
-
-.hero-overlay-nudot {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(180deg, rgba(5, 11, 24, 0.25) 0%, rgba(5, 11, 24, 0.92) 100%);
+.spot__location {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 36px;
-}
-
-/* モーダル */
-.modal-overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(2, 5, 12, 0.85);
-  backdrop-filter: blur(16px);
-  display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
-  padding: 20px;
+  gap: 6px;
+  color: var(--sky-pale);
+  font-size: 0.88rem;
+  margin-bottom: 24px;
 }
 
-.modal-content-nudot {
-  background: #0a142f;
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
-  max-width: 950px;
-  width: 100%;
-  max-height: 92vh;
-  overflow-y: auto;
-  border-radius: 20px;
-  padding: 36px;
+.spot__scene-block {
+  background: rgba(56, 189, 248, 0.08);
+  border-left: 3px solid var(--sky-glow);
+  padding: 16px 20px;
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 16px;
+}
+
+.spot__scene-label {
+  color: var(--sky-glow);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.spot__scene-text {
+  color: var(--white-soft);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.spot__quote {
+  font-family: var(--font-mincho);
+  font-style: italic;
+  color: var(--gold-warm);
+  font-size: 1.05rem;
+  padding: 14px 0;
+  border-top: 1px solid rgba(251, 191, 36, 0.2);
+  border-bottom: 1px solid rgba(251, 191, 36, 0.2);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.spot__reality-block {
+  margin-bottom: 28px;
+}
+
+.spot__reality-label {
+  color: var(--sunset-warm);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.spot__reality-text {
+  color: var(--text-sub);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+/* Google Mapsボタン */
+.spot__maps-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: all 0.3s var(--ease-out-expo);
+  box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
+}
+
+.spot__maps-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(234, 88, 12, 0.55);
+}
+
+/* 右カラム：アニメ作中カット */
+.spot__anime-frame {
   position: relative;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+.spot__anime-img-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
-.animate-fade-in { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-.grid-2col { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 28px; }
+.spot__anime-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 8s ease;
+}
+
+.spot__anime-img-wrap:hover img {
+  transform: scale(1.04);
+}
+
+.spot__anime-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 16px;
+  background: linear-gradient(transparent, rgba(6, 13, 30, 0.9));
+  color: var(--gold-warm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* ===========================
+   ナビゲーション
+   =========================== */
+.nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 14px clamp(20px, 4vw, 60px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+.nav-fixed.scrolled {
+  background: rgba(6, 13, 30, 0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.nav__logo {
+  font-family: var(--font-mincho);
+  font-size: 1.35rem;
+  color: #fff;
+  letter-spacing: 4px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav__links {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+}
+
+.nav__link {
+  color: var(--text-sub);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 8px 16px;
+  border-radius: 22px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.nav__link:hover,
+.nav__link--active {
+  color: #fff;
+  background: rgba(56, 189, 248, 0.15);
+}
 
 @media (max-width: 768px) {
-  .hero-bg-img-nudot { height: 280px; }
-  .hero-overlay-nudot { padding: 20px; }
+  .nav__links { display: none; }
+}
+
+/* ===========================
+   フッター
+   =========================== */
+.site-footer {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  border-top: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+/* ===========================
+   IntersectionObserver Reveal
+   =========================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ===========================
+   天気ウィジェット
+   =========================== */
+.weather-strip {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 18px 28px;
+  background: rgba(11, 26, 54, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  margin-bottom: 24px;
+}
+
+/* ===========================
+   スクロールバー
+   =========================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--navy-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.5);
 }
